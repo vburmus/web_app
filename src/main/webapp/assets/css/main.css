@@ -767,7 +767,7 @@ p {
   position: relative;
   z-index: 1;
   padding: 160px 0 50px;
-  background-image: url("../img/hero/hero-bg.svg");
+  background-image: url("../webapp/assets/img/main-bg/background-layer1.jpg");
   background-position: top center;
   background-repeat: no-repeat;
 }
@@ -779,7 +779,7 @@ p {
 }
 
 .hero-section .hero-content {
-  margin-bottom: 100px;
+  margin-bottom: 400px;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
@@ -847,22 +847,26 @@ p {
 }
 
 .hero-section .hero-content .scroll-bottom {
-  position: absolute;
+  
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #fff;
-  border: 3px solid #5864FF;
-  color: #5864FF;
+  float:right;
+
+  border: 2px solid white;
+  color: white;
   left: 15px;
   bottom: 0;
   z-index: 9;
-}
+    
 
+}
 .hero-section .hero-content .scroll-bottom i {
   font-weight: 700;
 }
-
+.hero-section .hero-content  .scroll-arrow  {
+  
+}
 @media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
   .hero-section .hero-img {
     padding-top: 30px;

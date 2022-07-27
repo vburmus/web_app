@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <html class="no-js" lang="">
 <head>
     <meta charset="utf-8" />
@@ -6,14 +6,12 @@
     <title>The Cash Register</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon"  type="image/x-icon" href="${pageContext.request.contextPath}/assets/img/favicon.png"/>
-    <!-- Place favicon.ico in the root directory -->
-
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/lineicons.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/animate.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
-</head>
+    <style>
+    <%@include file="assets/css/bootstrap.min.css" %>
+    <%@include file="assets/css/animate.css"%>
+    <%@include file="assets/css/login.css"%>
+    </style>
+    </head>
 <body>
 
 <!-- ======== preloader start ======== -->
@@ -36,98 +34,37 @@
 <!-- preloader end -->
 
 <!-- ======== header start ======== -->
-<header class="header">
-    <div class="navbar-area">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-12">
-                    <nav class="navbar navbar-expand-lg">
-                        <a class="navbar-brand" href="index.jsp">
-                            <p style="color: red">ere you need to paste the logo</p>
-                            <img src="${pageContext.request.contextPath}/assets/img/logo/logo.svg" alt="Logo" />
-                        </a>
-                        <button
-                                class="navbar-toggler"
-                                type="button"
-                                data-bs-toggle="collapse"
-                                data-bs-target="#navbarSupportedContent"
-                                aria-controls="navbarSupportedContent"
-                                aria-expanded="false"
-                                aria-label="Toggle navigation"
-                        >
-                            <span class="toggler-icon"></span>
-                            <span class="toggler-icon"></span>
-                            <span class="toggler-icon"></span>
-                        </button>
-
-                        <div
-                                class="collapse navbar-collapse sub-menu-bar"
-                                id="navbarSupportedContent"
-                        >
-                            <ul id="nav" class="navbar-nav ms-auto">
-                                <li class="nav-item">
-                                    <a class="page-scroll active" href="#home">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="page-scroll" href="#features">Features</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="page-scroll" href="#about">About</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="page-scroll" href="#why">Why</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="javascript:void(0)">Pricing</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="javascript:void(0)">Clients</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- navbar collapse -->
-                    </nav>
-                    <!-- navbar -->
-                </div>
-            </div>
-            <!-- row -->
-        </div>
-        <!-- container -->
-    </div>
-    <!-- navbar area -->
-</header>
+<jsp:include page="WEB-INF/view/header.jsp"/>
 <!-- ======== header end ======== -->
 
 <!-- ======== hero-section start ======== -->
 <section id="home" class="hero-section">
     <div class="container">
         <div class="row align-items-center position-relative">
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <div class="hero-content">
                     <h1 class="wow fadeInUp" data-wow-delay=".4s">
-                        Your using free lite version
+                        Start selling with this web application
                     </h1>
                     <p class="wow fadeInUp" data-wow-delay=".6s">
-                        Please, purchase full version to get all sections, features and
-                        permission to remove footer credit.
+                        The cash register, which you can simply use with your business
                     </p>
                     <a
-                            href="javascript:void(0)"
+                            href="/cashregister/login"
                             class="main-btn border-btn btn-hover wow fadeInUp"
                             data-wow-delay=".6s"
-                    >Purchase Now</a
+                    >Sign in | Sing up</a
                     >
+                    
+                    <div class="scroll-arrow wow fadeInUp" data-wow-delay=".6s">
                     <a href="#features" class="scroll-bottom">
                         <i class="lni lni-arrow-down"></i
                         ></a>
                 </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="hero-img wow fadeInUp" data-wow-delay=".5s">
-                    <img src="${pageContext.request.contextPath}/assets/img/hero/hero-img.png" alt="" />
                 </div>
+                
             </div>
+            
         </div>
     </div>
 </section>
@@ -139,42 +76,32 @@
         <div class="row justify-content-center">
             <div class="col-lg-4 col-md-8 col-sm-10">
                 <div class="single-feature">
-                    <div class="icon">
-                        <i class="lni lni-bootstrap"></i>
-                    </div>
+                    
                     <div class="content">
-                        <h3>Bootstrap 5</h3>
+                        <h3>Free in use</h3>
                         <p>
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                            diam nonumy eirmod tempor invidunt ut labore
+                            This web application was made for people, who needs a free cash register for business.
                         </p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-8 col-sm-10">
                 <div class="single-feature">
-                    <div class="icon">
-                        <i class="lni lni-layout"></i>
-                    </div>
+                   
                     <div class="content">
                         <h3>Clean Design</h3>
                         <p>
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                            diam nonumy eirmod tempor invidunt ut labore
+                            Simple and understandable interface, even your kid can use it!
                         </p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-8 col-sm-10">
                 <div class="single-feature">
-                    <div class="icon">
-                        <i class="lni lni-coffee-cup"></i>
-                    </div>
                     <div class="content">
                         <h3>Easy to Use</h3>
                         <p>
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                            diam nonumy eirmod tempor invidunt ut labore
+                            To start working with our web-app you only need to register and make a first check.
                         </p>
                     </div>
                 </div>
@@ -186,23 +113,7 @@
 
 <!-- ======== about-section start ======== -->
 <section id="about" class="about-section pt-150">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-xl-6 col-lg-6">
-                <div class="about-img">
-                    <img src="${pageContext.request.contextPath}/assets/img/about/about-1.png" alt="" class="w-100" />
-                    <img
-                            src="${pageContext.request.contextPath}/assets/img/about/about-left-shape.svg"
-                            alt=""
-                            class="shape shape-1"
-                    />
-                    <img
-                            src="${pageContext.request.contextPath}/assets/img/about/left-dots.svg"
-                            alt=""
-                            class="shape shape-2"
-                    />
-                </div>
-            </div>
+  
             <div class="col-xl-6 col-lg-6">
                 <div class="about-content">
                     <div class="section-title mb-30">
@@ -221,12 +132,10 @@
                             href="javascript:void(0)"
                             class="main-btn btn-hover border-btn wow fadeInUp"
                             data-wow-delay=".6s"
-                    >Discover More</a
-                    >
+                    >Discover More</a>
                 </div>
             </div>
-        </div>
-    </div>
+       
 </section>
 <!-- ======== about-section end ======== -->
 
@@ -261,14 +170,14 @@
             </div>
             <div class="col-xl-6 col-lg-6 order-first order-lg-last">
                 <div class="about-img-2">
-                    <img src="${pageContext.request.contextPath}/assets/img/about/about-2.png" alt="" class="w-100" />
+                    <img src="assets/img/about/about-2.png" alt="" class="w-100" />
                     <img
-                            src="${pageContext.request.contextPath}/assets/img/about/about-right-shape.svg"
+                            src="assets/img/about/about-right-shape.svg"
                             alt=""
                             class="shape shape-1"
                     />
                     <img
-                            src="${pageContext.request.contextPath}/assets/img/about/right-dots.svg"
+                            src="assets/img/about/right-dots.svg"
                             alt=""
                             class="shape shape-2"
                     />
@@ -389,48 +298,19 @@
 <!-- ======== feature-section end ======== -->
 
 <!-- ======== subscribe-section start ======== -->
-<section id="contact" class="subscribe-section pt-120">
-    <div class="container">
-        <div class="subscribe-wrapper img-bg">
-            <div class="row align-items-center">
-                <div class="col-xl-6 col-lg-7">
-                    <div class="section-title mb-15">
-                        <h2 class="text-white mb-25">Subscribe Our Newsletter</h2>
-                        <p class="text-white pr-5">
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                            diam nonumy eirmod tempor
-                        </p>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-5">
-                    <form action="#" class="subscribe-form">
-                        <input
-                                type="email"
-                                name="subs-email"
-                                id="subs-email"
-                                placeholder="Your Email"
-                        />
-                        <button type="submit" class="main-btn btn-hover">
-                            Subscribe
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+
 <!-- ======== subscribe-section end ======== -->
 
 <!-- ======== footer start ======== -->
 <footer class="footer">
-    <div class="container">
+    <div class="container">І
         <div class="widget-wrapper">
             <div class="row">
                 <div class="col-xl-4 col-lg-4 col-md-6">
                     <div class="footer-widget">
                         <div class="logo mb-30">
                             <a href="index.jsp">
-                                <img src="${pageContext.request.contextPath}/assets/img/logo/logo.svg" alt="" />
+                                <img src="assets/img/logo/logo.svg" alt="" />
                             </a>
                         </div>
                         <p class="desc mb-30 text-white">
@@ -509,8 +389,8 @@
 </a>
 
 <!-- ======== JS here ======== -->
-<script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/wow.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/wow.min.js"></script>
+<script src="assets/js/main.js"></script>
 </body>
 </html>

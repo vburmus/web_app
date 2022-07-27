@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="${pageContext.request.contextPath}/style.css" rel="stylesheet"type="text/css">
+    <style>
+        <%@include file="../../assets/style.css" %>
+        <%@include file="../../assets/style2.css" %>
+    </style>
 </head>
 <body>
 <div class="bb">
