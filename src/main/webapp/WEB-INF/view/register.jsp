@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
+
 <head>
     <title>JSP - Hello World</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/login.css"/>
@@ -11,45 +12,58 @@
 
 </head>
 <body>
+<jsp:include page="header.jsp"/>
 <div class="form">
 <div class="col-12">
-<jsp:include page="header.jsp"/>
-      <form action="controller" method="post">
-<input type="hidden" name="command" value="LOGIN">
 
+      <form method="post" action="controller" enctype="multipart/form-data" >
+          <input type="hidden" name="command" value="REGISTER"/>
+        <div class="form-outline mb-4">
+            <label class="form-label" for="name">Name</label>
+            <input type="name" id="name" name="name" class="form-control" />
+        </div>
           <div class="form-outline mb-4">
-
-              <label class="form-label" for="email">Email address</label>
-              <input type="email" name="email" id="email" class="form-control" />
+              <label class="form-label" for="surname">Surname</label>
+              <input type="surname" id="surname"  name="surname" class="form-control" />
+          </div>
+          <div class="form-outline mb-4">
+              <label class="form-label" for="mobile">Mobile</label>
+              <input type="mobile" id="mobile" name="mobile" class="form-control" />
           </div>
 
-          <!-- Password input -->
+          <!-- Email input -->
           <div class="form-outline mb-4">
-              <label class="form-label" for="passwordLog">Password</label>
-              <input type="password" name="password" id="passwordLog" class="form-control" />
+              <label class="form-label" for="email">Email address</label>
+              <input type="email" id="email" name="email"  class="form-control" />
+          </div>
+          <div class="form-outline mb-4">
+              <label class="form-label" for="password">Password</label>
+              <input type="password" id="password" name="password" class="form-control" />
+          </div>
+          <div class="form-outline mb-4">
+              <label class="form-label" for="text">About you:</label>
+              <textarea type="text" id="text" name="text" class="form-control" rows="3" ></textarea>
+          </div>
+          <div class="form-outline mb-4">
+              <label class="form-label" for="photo">Photo</label>
+              <input type="file" id="photo" name="photo" class="form-control" />
               <c:if test="${errorMessage!=null}">
                   <p class="text-danger " >${errorMessage}</p>
               </c:if>
           </div>
-          <!-- 2 column grid layout for inline styling -->
           <div class="row mb-4">
               <div class="col d-flex justify-content-center">
-      <!-- Checkbox -->
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
-        <label class="form-check-label" for="form1Example3"> Remember me </label>
-      </div>
     </div>
-   <div class="col">
+    <div class="col">
       <!-- Simple link -->
-      <a href="${pageContext.request.contextPath}/controller?command=REGISTER_PAGE">Make an account</a>
+      <a href="controller?command=LOGIN_PAGE">Already have an account?</a>
     </div>
   </div>
 
   <!-- Submit button -->
-  <button id="submit" type="submit" disabled  class="btn btn-primary btn-block">Sign in</button>
+  <button id="submit" type="submit" class="btn btn-primary btn-block">Sign up</button>
 </form>
-            
+
             
 <!--<form name="registerForm" action="">
     <p>Insert your email: <input type="email" name="users_email"></p>

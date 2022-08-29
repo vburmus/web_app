@@ -3,4 +3,43 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+    <resource-ref>
+        <res-ref-name>jdbc/my_db</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
+   <!-- <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/view/error.jsp</location>
+    </error-page>-->
+        <filter>
+            <filter-name>EncodingFilter</filter-name>
+            <filter-class>com.my.Services.Filters.RequestEncodeFilter</filter-class>
+            <init-param>
+                <param-name>encoding</param-name>
+                <param-value>UTF-8</param-value>
+            </init-param>
+        </filter>
+   <filter>
+        <filter-name>DBAccessFilter</filter-name>
+        <filter-class>com.my.Services.Filters.DBAccessFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>DBAccessFilter</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>MainPageFilter</filter-name>
+        <filter-class>com.my.Services.Filters.MainPageFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>EncodingFilter</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>MainPageFilter</filter-name>
+        <url-pattern>/</url-pattern>
+    </filter-mapping>
+
+
 </web-app>

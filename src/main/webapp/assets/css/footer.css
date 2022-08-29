@@ -1,0 +1,137 @@
+
+/* ======= footer css ======= */
+.footer {
+    background-size: cover;
+    background-position: top right;
+    padding-top: 130px;
+    margin-top: 100px;
+    background-color: #655444;
+}
+.footerLogo a, .footerLogo a:checked{
+    font-size: 70px;
+    color: white;
+    text-decoration: none;
+
+}
+.footerLogo a:hover,.footerLogo a:active{
+    color: #635046;
+}
+.footerLogo{
+    margin-bottom: 3%;
+}
+h2 {
+    font-size: 30px;
+}
+
+h3 {
+    font-size: 25px;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+h5 {
+    font-size: 18px;
+}
+
+h6 {
+    font-size: 16px;
+}
+
+ul,
+ol {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+}
+
+p {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 26px;
+    margin: 0px;
+    font-family: "Open Sans", sans-serif;
+}
+
+a {
+    -webkit-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+    text-decoration: none !important;
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .footer {
+        padding-top: 250px;
+    }
+}
+
+@media (max-width: 767px) {
+    .footer {
+        padding-top: 120px;
+        background: #7a5f4e;
+    }
+}
+
+.footer .widget-wrapper .footer-widget {
+    margin-bottom: 40px;
+}
+
+@media only screen and (min-width: 1400px) {
+    .footer .widget-wrapper .footer-widget .desc {
+        padding-right: 100px;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    .footer .widget-wrapper .footer-widget .desc {
+        padding-right: 50px;
+    }
+}
+
+.footer .widget-wrapper .footer-widget .socials {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.footer .widget-wrapper .footer-widget .socials li {
+    margin-right: 20px;
+}
+
+.footer .widget-wrapper .footer-widget .socials li:last-child {
+    margin-right: 0;
+}
+
+.footer .widget-wrapper .footer-widget .socials li a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.13);
+    color: #fff;
+}
+
+.footer .widget-wrapper .footer-widget .socials li a:hover {
+    color: #635046;
+    background: #fff;
+}
+
+.footer .widget-wrapper .footer-widget h3 {
+    margin-bottom: 25px;
+    color: #fff;
+}
+
+.footer .widget-wrapper .footer-widget ul.links li {
+    font-size: 18px;
+    line-height: 34px;
+}
+
+.footer .widget-wrapper .footer-widget ul.links li a {
+    color: #fff;
+}
+
+.footer .widget-wrapper .footer-widget ul.links li a:hover {
+    padding-left: 8px;
+}
