@@ -8,6 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 public class ErrorPageCommand implements ICommand {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) {
-        return "error404";
+        return "error";
     }
 }

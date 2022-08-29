@@ -17,11 +17,16 @@ import java.io.IOException;
 )
 @WebServlet("/controller")
 public class FrontController extends HttpServlet{
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("#doGet");
-        String forward = "/WEB-INF/view/" +handleRequest(req, resp) ;
-        req.getRequestDispatcher(forward + ".jsp").forward(req,resp);
+
+            boolean pageAccess = (boolean) req.getSession().getAttribute("pageAccess");
+            String forward = "/WEB-INF/view/" +handleRequest(req, resp) ;
+            if (pageAccess) {
+                req.getRequestDispatcher(forward + ".jsp").forward(req, resp);
+            }
 
     }
 

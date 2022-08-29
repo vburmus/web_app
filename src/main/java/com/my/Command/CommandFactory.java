@@ -20,4 +20,20 @@ public class CommandFactory {
             iCommand = PageEnum.ERROR_PAGE.getCommand();
         return iCommand;
     }
+    public static IFilterCommand getFilter(HttpServletRequest req, HttpServletResponse resp){
+        String command = req.getParameter("command");
+        IFilterCommand iFilterCommand = null;
+        if(command!=null){
+            try{
+                iFilterCommand = FilterEnum.valueOf(command).getCommand();
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+                iFilterCommand = FilterEnum.ERROR_PAGE.getCommand();
+            }
+        }
+        else
+            iFilterCommand = FilterEnum.ERROR_PAGE.getCommand();
+        return iFilterCommand;
+    }
+
 }
