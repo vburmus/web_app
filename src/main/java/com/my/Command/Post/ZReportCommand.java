@@ -1,7 +1,7 @@
 package com.my.Command.Post;
 
 import com.my.Command.ICommand;
-import com.my.DAO.EmployeeDao;
+import com.my.DAO.EmployeeDAO;
 import com.my.DAO.OrderDAO;
 import com.my.Model.Employee;
 import com.my.Model.Order;
@@ -11,20 +11,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.function.BinaryOperator;
-import java.util.stream.Collectors;
 
 public class ZReportCommand implements ICommand {
     OrderDAO orderDAO = new OrderDAO();
-    EmployeeDao employeeDao = new EmployeeDao();
+    EmployeeDAO employeeDao = new EmployeeDAO();
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
         DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         LocalDate date = LocalDate.parse(req.getParameter("selectedDay").replace("-","."),formatter);
-        List<Order> orders  = orderDAO.getOrders();
+        List<Order> orders  = orderDAO.getList();
 
         List<Order> dayOrders =  new ArrayList<>();
         for(int i = 0; i < orders.size(); i++){
@@ -41,7 +38,7 @@ public class ZReportCommand implements ICommand {
             if(o.getSummary()>maxOrder.getSummary())
                 maxOrder = o;
         }
-        Employee maxEmp = employeeDao.findEmployee(maxOrder.getUsers_id());
+        Employee maxEmp = employeeDao.find(String.valueOf(maxOrder.getUsers_id()));
         float summary = 0;
         summary = (dayOrders.stream().map(x -> x.getSummary())
                 .reduce((float) 0,  Float::sum));

@@ -1,8 +1,10 @@
 package com.my.DAO;
 
+import com.my.DB.DBManager;
 import com.my.Model.Item;
 import com.my.Model.Order;
 import com.my.Model.Transaction;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,13 +13,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.my.DAO.DB.Constants.*;
+import static com.my.DB.Constants.*;
+import static com.my.DB.DBManager.LOGGER;
 
-public class OrderDAO {
+public class OrderDAO implements IDAO<Order>{
     private static DBManager manager = DBManager.getInstance();
-    private ItemDao itemDao = new ItemDao();
-    public void addOrder(Order order){
-
+    private ItemDAO itemDao = new ItemDAO();
+    public void add(@NotNull Order order){
+        LOGGER.info("Adding order...");
 
         int res = 0;
         try(Connection con = manager.getConnection();
@@ -44,8 +47,109 @@ public class OrderDAO {
             throw new RuntimeException(e);
         }
     }
-    public void updateOrder(Order order){
 
+    public  List getList(){
+        List<Order> orders = new ArrayList<>();
+
+        try {
+            ResultSet rs = manager.getRSFromSql(SQL_SELECT_ORDERS);
+            while (rs.next()) {
+                orders.add(extract(rs));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return orders;
+    }
+
+    public  Order extract(@NotNull ResultSet rs) {
+        Order order = new Order();
+        try {
+           order.setId(rs.getInt("id"));
+           order.setUsers_id(rs.getInt("user"));
+           order.setDate(rs.getString("created"));
+           order.setSummary(rs.getFloat("summary"));
+           order.setTransactions(extractOrderTransactions(order.getId()));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return order;
+    }
+
+    public  Order find(String id){
+        Order order = new Order();
+        try(Connection con = manager.getConnection();
+        PreparedStatement ps = con.prepareStatement(SQL_SELECT_ORDER)){
+            ps.setString(1,id);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                order = extract(rs);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return order;
+    }
+
+    public List getList(int offset) {
+        return null;
+    }
+
+    /**
+     * this method returns transaction from order list
+     * @param transactionId
+     * @param orderId
+     * @return Transaction object
+     */
+    private @NotNull Transaction extractTransactionFromOrdersList(int transactionId, int orderId) {
+        Transaction transaction = new Transaction();
+        try(Connection con = manager.getConnection();
+            PreparedStatement ps = con.prepareStatement(SQL_EXECUTE_TRANSACTION)){
+
+            ps.setInt(1,transactionId);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                transaction.setId(rs.getInt("id"));
+                transaction.setItem(itemDao.find(String.valueOf(rs.getInt("item_id"))));
+                transaction.setQuantity(rs.getInt("quantity"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return transaction;
+    }
+
+    /**
+     * This method returns list of order transactions
+     * @param orderId
+     * @return List of transactions
+     */
+    public ArrayList<Transaction> extractOrderTransactions(int orderId) {
+        ArrayList<Transaction> transactions = new ArrayList<>();
+        try(Connection con = manager.getConnection();
+            PreparedStatement ps = con.prepareStatement(SQL_SELECT_ORDER_TRANSACTIONS)) {
+            ps.setInt(1,orderId);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                transactions.add(extractTransactionFromOrdersList(rs.getInt("transaction_id"),orderId));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return transactions;
+
+    }
+
+    /**
+     * This method updates an order
+     * @param order
+     */
+    public void updateOrder(@NotNull Order order){
+        LOGGER.info("Updating order...");
         try(Connection con = manager.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL_UPDATE_ORDER, PreparedStatement.RETURN_GENERATED_KEYS);){
             float summary = 0;
@@ -68,84 +172,12 @@ public class OrderDAO {
         }
 
     }
-    public  List getOrders(){
-        List<Order> orders = new ArrayList<>();
 
-        try {
-            ResultSet rs = manager.getRSFromSql(SQL_SELECT_ORDERS);
-            while (rs.next()) {
-                orders.add(extractOrder(rs));
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return orders;
-    }
-    public  Order extractOrder(ResultSet rs) {
-        Order order = new Order();
-        try {
-           order.setId(rs.getInt("id"));
-           order.setUsers_id(rs.getInt("user"));
-           order.setDate(rs.getString("created"));
-           order.setSummary(rs.getFloat("summary"));
-           order.setTransactions(extractOrderTransactions(order.getId()));
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return order;
-    }
-    public  ArrayList<Transaction> extractOrderTransactions(int orderId) {
-        ArrayList<Transaction> transactions = new ArrayList<>();
-        try(Connection con = manager.getConnection();
-        PreparedStatement ps = con.prepareStatement(SQL_SELECT_ORDER_TRANSACTIONS)) {
-            ps.setInt(1,orderId);
-            ResultSet rs = ps.executeQuery();
-
-                while(rs.next()){
-                    transactions.add(extractTransactionFromOrdersList(rs.getInt("transaction_id"),orderId));
-                }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-
-        return transactions;
-
-    }
-
-    private  Transaction extractTransactionFromOrdersList(int transactionId, int orderId) {
-        Transaction transaction = new Transaction();
-        try(Connection con = manager.getConnection();
-        PreparedStatement ps = con.prepareStatement(SQL_EXECUTE_TRANSACTION)){
-
-            ps.setInt(1,transactionId);
-            ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                transaction.setId(rs.getInt("id"));
-                transaction.setItem(ItemDao.findItem(String.valueOf(rs.getInt("item_id"))));
-                transaction.setQuantity(rs.getInt("quantity"));
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return transaction;
-    }
-    public  Order findOrderById(String id){
-        Order order = new Order();
-        try(Connection con = manager.getConnection();
-        PreparedStatement ps = con.prepareStatement(SQL_SELECT_ORDER)){
-            ps.setString(1,id);
-            ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                order = extractOrder(rs);
-            }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return order;
-    }
-    public void deleteOrder(Order order){
+    /**
+     * This method deletes an order
+     * @param order
+     */
+    public void deleteOrder(@NotNull Order order){
 
         Connection con = null;
         try{

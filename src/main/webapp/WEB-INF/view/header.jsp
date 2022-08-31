@@ -1,7 +1,8 @@
 <%@ page import="com.my.Model.Employee" %>
-<%@ page import="com.my.DAO.DB.Fields" %>
+<%@ page import="com.my.DB.Fields" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 
@@ -12,6 +13,8 @@
 
 </head>
 <body>
+<fmt:setLocale value="${locale}"/>
+<fmt:setBundle basename="language"/>
 <header>
   <div class="navbar-area">
     <div class="container">
@@ -36,17 +39,33 @@
                     class="collapse navbar-collapse sub-menu-bar"
                     id="navbarSupportedContent"
             >
+              <ul  class="navbar-nav">
+                <li class="nav-item">
 
-              <ul id="nav" class="navbar-nav ms-auto">
+                  <form method="post" action="controller">
+                  <input type="hidden" name="lang" value="en">
+                  <input type="hidden" name="command" value="LANG_SETUP">
+                    <button class="btr bg-transparent text-white border-0" type="submit"><a><fmt:message key="_en"/></a></button>
+                  </form>
+                </li>
+                <li class="nav-item">
+                  <form method="post" action="controller">
+                    <input type="hidden" name="lang" value="ua">
+                    <input type="hidden" name="command" value="LANG_SETUP">
+                    <button class="btr bg-transparent text-white border-0" type="submit"><a ><fmt:message key="_ua"/></a></button>
+                  </form>
+                </li>
+              </ul>
+              <ul  class="navbar-nav ms-auto">
                 <li class="nav-item">
 
                   <c:choose>
                   <c:when test="${(pageContext.session.getAttribute('user')==null) }">
 
-                    <a class="page-scroll active" href="#home">Home</a>
+                    <a class="page-scroll active" href="#home"><fmt:message key="header_home"/></a>
                   </c:when>
                     <c:when test="${pageContext.session.getAttribute('user')!=null}">
-                      <a  href="${pageContext.request.contextPath}/controller?command=PROFILE_PAGE">Profile</a>
+                      <a  href="${pageContext.request.contextPath}/controller?command=PROFILE_PAGE"><fmt:message key="header_profile"/></a>
                     </c:when>
                   </c:choose>
 
@@ -54,16 +73,16 @@
                 <li class="nav-item">
                   <c:choose>
                     <c:when test="${(pageContext.session.getAttribute('user')==null)}">
-                      <a class="page-scroll" href="#features">Features</a>
+                      <a class="page-scroll" href="#features"><fmt:message key="features"/></a>
                     </c:when>
                     <c:when test="${(pageContext.session.getAttribute('user').role==Fields.ADMIN)}">
-                      <a  class="" href="${pageContext.request.contextPath}/controller?command=EMPLOYEES_PAGE&page=1">Employees</a>
+                      <a  class="" href="${pageContext.request.contextPath}/controller?command=EMPLOYEES_PAGE&page=1"><fmt:message key="header_employees"/></a>
                     </c:when>
                     <c:when test="${(pageContext.session.getAttribute('user').role==Fields.COMMODITY_EXERT)}">
-                      <a  href="${pageContext.request.contextPath}/controller?command=PRODUCTS_PAGE&page=1">Products</a>
+                      <a  href="${pageContext.request.contextPath}/controller?command=PRODUCTS_PAGE&page=1"><fmt:message key="header_products"/></a>
                     </c:when>
                     <c:when test="${(pageContext.session.getAttribute('user').role==Fields.CASHIER||(pageContext.session.getAttribute('user').role==Fields.SENIOR_CASHIER))}">
-                      <a  href="${pageContext.request.contextPath}/controller?command=ORDERS_PAGE">Orders</a>
+                      <a  href="${pageContext.request.contextPath}/controller?command=ORDERS_PAGE"><fmt:message key="header_orders"/></a>
                     </c:when>
                   </c:choose>
 
@@ -71,20 +90,20 @@
                 <li class="nav-item">
                   <c:choose>
                     <c:when test="${(pageContext.session.getAttribute('user')==null)}">
-                      <a class="page-scroll" href="#about">About</a>
+                      <a class="page-scroll" href="#about"><fmt:message key="_about"/></a>
                     </c:when>
                     <c:when test="${(pageContext.session.getAttribute('user').role==Fields.ADMIN)}">
-                      <a  href="${pageContext.request.contextPath}/controller?command=ORDERS_PAGE">Orders</a>
+                      <a  href="${pageContext.request.contextPath}/controller?command=ORDERS_PAGE"><fmt:message key="header_orders"/></a>
                     </c:when>
                     <c:when test="${(pageContext.session.getAttribute('user').role==Fields.COMMODITY_EXERT)}">
-                      <a  href="${pageContext.request.contextPath}/controller?command=NEW_PRODUCT_PAGE">Add product</a>
+                      <a  href="${pageContext.request.contextPath}/controller?command=NEW_PRODUCT_PAGE"><fmt:message key="header_addProduct"/></a>
                     </c:when>
                     <c:when test="${(pageContext.session.getAttribute('user').role==Fields.CASHIER)}">
-                      <a  href="${pageContext.request.contextPath}/controller?command=TRANSACTION_PAGE">Create order</a>
+                      <a  href="${pageContext.request.contextPath}/controller?command=TRANSACTION_PAGE"><fmt:message key="header_createOrder"/></a>
                     </c:when>
                     <c:when test="${(pageContext.session.getAttribute('user').role==Fields.SENIOR_CASHIER)}">
                         <a href="javascript:void(0)" data-backdrop="false"  data-bs-toggle="modal" data-bs-target="#exampleModal">
-                          Reports
+                          <fmt:message key="header_reports"/>
                         </a>
                     </c:when>
                   </c:choose>
@@ -94,13 +113,10 @@
                 <li class="nav-item">
                   <c:choose>
                     <c:when test="${(pageContext.session.getAttribute('user')==null)}">
-                      <a class="page-scroll" href="#why">Why</a>
+                      <a class="page-scroll" href="#why"><fmt:message key="why"/></a>
                     </c:when>
-                    <c:when test="${(pageContext.session.getAttribute('user').role==Fields.ADMIN)}">
-                      <a  href="${pageContext.request.contextPath}/controller?command=CATEGORY_PAGE">Categorie</a>
-                    </c:when>
-                    <c:when test="${(pageContext.session.getAttribute('user').role!=Fields.ADMIN)}">
-                      <a  href="${pageContext.request.contextPath}/controller?command=MESSAGE_TO_ADMIN">Message to admin</a>
+                    <c:when test="${(pageContext.session.getAttribute('user').role==Fields.CASHIER)}">
+                      <a  href="${pageContext.request.contextPath}/controller?command=PRODUCTS_PAGE&page=1"><fmt:message key="header_products"/></a>
                     </c:when>
                   </c:choose>
 
@@ -109,20 +125,14 @@
 
                   <c:choose>
                     <c:when test="${(pageContext.session.getAttribute('user')==null)}">
-                      <a id="navbarSignIn" href="${pageContext.request.contextPath}/controller?command=LOGIN_PAGE">Sign in</a>
+                      <a id="navbarSignIn" href="${pageContext.request.contextPath}/controller?command=LOGIN_PAGE"><fmt:message key="signIn"/> </a>
                     </c:when>
                     <c:when test="${(pageContext.session.getAttribute('user')!=null)}">
-                      <a href="${pageContext.request.contextPath}/controller?command=LOGOUT">Logout</a>
+                      <a href="${pageContext.request.contextPath}/controller?command=LOGOUT"><fmt:message key="header_logOut"/></a>
                     </c:when>
                   </c:choose>
 
                 </li>
-                <c:if test="${(pageContext.session.getAttribute('user').role==Fields.ADMIN)}">
-                <li class="nav-item">
-                      <a class="page-scroll" href="${pageContext.request.contextPath}/controller?command=ADMINS_MESSAGES_PAGE">Messages</a>
-                </li>
-                </c:if>
-
               </ul>
             </div>
             <!-- navbar collapse -->
@@ -158,7 +168,7 @@
               <form  method="post" action="controller">
                 <input type="hidden" name="command" value="Z_REPORT">
                 <input placeholder="Selected date" name="selectedDay" type="date"  class="form-control datepicker" >
-                <button  type="submit">Create report</button>
+                <button  type="submit"><fmt:message key="header_createReport"/></button>
               </form>
               </div>
               <div id="x-report_form" hidden>
@@ -166,7 +176,7 @@
                   <input type="hidden" name="command" value="X_REPORT">
                   <input placeholder="Selected date" name="fromDay" type="date" class="form-control datepicker" >
                   <input placeholder="Selected date" name="toDay" type="date" class="form-control datepicker" >
-                  <button  type="submit">Create report</button>
+                  <button  type="submit"><fmt:message key="header_createReport"/></button>
                 </form>
               </div>
             </div>

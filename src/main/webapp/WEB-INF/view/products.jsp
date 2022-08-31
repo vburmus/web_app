@@ -1,12 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: burmus
-  Date: 8/9/2022
-  Time: 7:16 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 <head>
@@ -17,12 +11,14 @@
 <jsp:useBean id="items" scope="request" type="java.util.List"/>
 </head>
 <body>
+<fmt:setLocale value="${locale}"/>
+<fmt:setBundle basename="language"/>
 <jsp:include page="header.jsp"/>
 <c:if test="${items.size()==0}">
   <div class="message">
     <div class="row ">
       <div class="bg-warning rounded-3 col-8 offset-2">
-        <h3 class="text-white">Please add items!</h3>
+        <h3 class="text-white"><fmt:message key="products_message"/></h3>
       </div>
     </div>
   </div>
@@ -41,8 +37,8 @@
         <p class="card-text">${item.getTitle()}</p>
       </div>
       <div class="card-footer">
-        <h6 class="card-text">Price: ${item.getPrice()}</h6>
-        <small class="text-muted">Quantity: ${item.getQuantity()}</small>
+        <h6 class="card-text"><fmt:message key="_price"/>: ${item.getPrice()}</h6>
+        <small class="text-muted"><fmt:message key="_quantity"/>: ${item.getQuantity()}</small>
       </div>
     </div>
 
@@ -54,10 +50,10 @@
       </div>
       <div class="col-3 justify-content-start">
         <c:if test="${page==1}">
-          <a  hidden class="page-link text-center" href="${pageContext.request.contextPath}/controller?command=PRODUCTS_PAGE&page=${page-1}" tabindex="-1">1Previous</a>
+          <a  hidden class="page-link text-center" href="${pageContext.request.contextPath}/controller?command=PRODUCTS_PAGE&page=${page-1}" tabindex="-1"><fmt:message key="previousButton"/></a>
         </c:if>
         <c:if test="${page!=1}">
-          <a class="page-link text-center" href="${pageContext.request.contextPath}/controller?command=PRODUCTS_PAGE&page=${page-1}" tabindex="-1">Previous</a>
+          <a class="page-link text-center" href="${pageContext.request.contextPath}/controller?command=PRODUCTS_PAGE&page=${page-1}" tabindex="-1"><fmt:message key="previousButton"/></a>
         </c:if>
 
 
@@ -66,7 +62,7 @@
       </div>
       <div class="col-3 justify-content-end">
         <c:if test="${page<pages}">
-          <a class="page-link text-center" href="${pageContext.request.contextPath}/controller?command=PRODUCTS_PAGE&page=${page+1}">Next</a>
+          <a class="page-link text-center" href="${pageContext.request.contextPath}/controller?command=PRODUCTS_PAGE&page=${page+1}"><fmt:message key="nextButton"/></a>
         </c:if>
       </div>
       <div class="col-2">

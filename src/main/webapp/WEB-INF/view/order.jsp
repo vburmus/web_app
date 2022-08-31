@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="com.my.DAO.DB.Fields" %>
+<%@ taglib prefix="tf" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="com.my.DB.Fields" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,19 +14,21 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/animate.css"/>
 </head>
     <body>
+    <fmt:setLocale value="${locale}"/>
+    <fmt:setBundle basename="language"/>
     <jsp:include page="header.jsp"/>
     <div class="order w-75 ">
         <div class="order-section">
 
-            <h2>Order number: ${order.id}</h2>
+            <h2><fmt:message key="order_number"/>${order.id}</h2>
             <hr>
-            <h6>Order summary: ${order.summary}</h6>
-            <h6>Made by user: #${order.users_id} </h6>
+            <h6><fmt:message key="order_summary"/> ${order.summary}</h6>
+            <h6><fmt:message key="order_made"/> #${order.users_id} </h6>
             <h6>${order.date} </h6>
         </div>
         <hr>
         <div class="mt-1 text-center">
-            <h3>Items in order:</h3>
+            <h3><fmt:message key="order_items"/>:</h3>
             <c:forEach items="${order.transactions}" var="transaction">
             <div class="card mb-3">
                 <div class="card-body">
@@ -44,10 +48,8 @@
                             <input type="hidden" name="transactionId" value="${transaction.id}">
 
                             <input class="quantityInput" class="col-2"  name="changedQuantity" type="number" min="1" placeholder="${transaction.quantity}pcs"/>
-                            <c:if test="${errorMessage!=null}">
-                                <p class="text-danger" >${errorMessage}</p>
-                            </c:if>
-                            <button class="quantitySubmit" type="submit" disabled  class="btn-light"> Submit</button>
+                            <tf:error message="${errorMessage}"/>
+                            <button class="quantitySubmit" type="submit" disabled  class="btn-light"> <fmt:message key="submitButton"/></button>
 
 
                         </form>
@@ -56,12 +58,12 @@
                                 <form name="changePcs" method="post" action="controller">
                                     <input type="hidden" name="command" value="DELETE_TRANSACTION">
                                     <input type="hidden" name="transactionId" value="${transaction.id}">
-                                    <button class="deleteSubmit" type="submit"   class="btn-light"> Delete item</button>
+                                    <button class="deleteSubmit" type="submit"   class="btn-light"><fmt:message key="order_deleteItem"/></button>
                                 </form>
                             </c:when>
                         </c:choose>
                         <hr>
-                        <p>Available: ${transaction.item.quantity}pcs</p>
+                        <p><fmt:message key="order_available"/> ${transaction.item.quantity}pcs</p>
                     </div>
                     </div>
                 </div>

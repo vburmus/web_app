@@ -16,9 +16,6 @@ public  Item(){
         return category;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
     public Integer getId() {
         return id;
     }
@@ -40,6 +37,10 @@ public  Item(){
 
     public void setName(String name) {
         this.name = name;
+
+    }
+    public void setCategory(Category category) {
+        this.category = category;
     }
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;

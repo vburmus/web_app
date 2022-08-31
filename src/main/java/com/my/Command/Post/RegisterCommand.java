@@ -1,31 +1,30 @@
 package com.my.Command.Post;
 
 import com.my.Command.ICommand;
-import com.my.DAO.EmployeeDao;
+import com.my.DAO.EmployeeDAO;
 import com.my.Model.Employee;
-import com.my.Passwords.KeyDerivator;
+import com.my.Model.Passwords.KeyDerivator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Collection;
 
+import static com.my.DB.DBManager.LOGGER;
+
 public class RegisterCommand implements ICommand {
-    private EmployeeDao employeeDao;
+    private EmployeeDAO employeeDao;
 
     public RegisterCommand() {
-        this.employeeDao = new EmployeeDao();
+        this.employeeDao = new EmployeeDAO();
     }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-
+        LOGGER.info("User is trying to register.");
         String name = request.getParameter("name");
         System.out.println(name);
         System.out.println(request.getCharacterEncoding());
@@ -47,7 +46,6 @@ public class RegisterCommand implements ICommand {
             employee.setEmail(email);
             try {
                 Collection<Part> parts = request.getParts();
-
                 String realPath = request.getServletContext().getRealPath("assets/img/users");
                 String imgName = null;
                 for (Part part : parts) {
@@ -69,8 +67,7 @@ public class RegisterCommand implements ICommand {
                 employee.setImageName(imgName);
 
             } catch (Exception e) {
-                throw new RuntimeException(e);
-                //write an exception
+                e.printStackTrace();
             }
             try {
                 employee.setPassword(KeyDerivator.generateStorngPasswordHash(password));
@@ -81,11 +78,8 @@ public class RegisterCommand implements ICommand {
             }
 
             employee.setProfile(text);
-            try {
-                this.employeeDao.registerEmployee(employee);
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
+            this.employeeDao.add(employee);
+            LOGGER.info("Success.");
             return request.getContextPath() + "/controller?command=LOGIN_PAGE";
         }
     }

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: burmus
@@ -15,6 +16,8 @@
     <jsp:useBean id="biggestOrder" type="com.my.Model.Order" scope="session"/>
 </head>
 <body>
+<fmt:setLocale value="${locale}"/>
+<fmt:setBundle basename="language"/>
 <jsp:include page="header.jsp"/>
 <div class="container col-8 mx-auto ">
 
@@ -27,9 +30,9 @@
     <thead>
     <tr>
     <th scope="col">#</th>
-    <th scope="col">Date</th>
-    <th scope="col">User</th>
-    <th scope="col">Summary</th>
+    <th scope="col"><fmt:message key="_date"/></th>
+    <th scope="col"><fmt:message key="_user"/></th>
+    <th scope="col"><fmt:message key="_summary"/></th>
     </tr>
     </thead>
     <tbody>
@@ -48,16 +51,16 @@
 <hr>
 <hr>
 <div class="maxOrder">
-    <h3>Max order was made by ${maxEmployee.name} ${maxEmployee.surname}!</h3>
+    <h3><fmt:message key="_maxOrder"/> ${maxEmployee.name} ${maxEmployee.surname}!</h3>
     <hr>
-    <p>It was made ${biggestOrder.date}, and this order`s summary - ${biggestOrder.summary}</p>
+    <p><fmt:message key="_madeBy1"/> ${biggestOrder.date}, <fmt:message key="_madeBy2"/>- ${biggestOrder.summary}$</p>
     <hr>
-    <p>Employee id: ${maxEmployee.id}</p>
-    <p>Employee email: ${maxEmployee.email}</p>
-    <p>Employee mobile: ${maxEmployee.mobile}</p>
+    <p><fmt:message key="emp_id"/> ${maxEmployee.id}</p>
+    <p><fmt:message key="emp_mail"/> ${maxEmployee.email}</p>
+    <p><fmt:message key="emp_mobile"/> ${maxEmployee.mobile}</p>
 </div>
 <div class="summarise">
-    Total income for this day is  - ${summary}$
+    <fmt:message key="income"/>  - ${summary}$
 </div>
 </div>
 </body>

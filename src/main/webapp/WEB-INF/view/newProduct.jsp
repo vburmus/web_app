@@ -1,11 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: burmus
-  Date: 8/7/2022
-  Time: 11:34 AM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="tf" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -16,6 +11,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/animate.css"/>
 </head>
 <body>
+<fmt:setLocale value="${locale}"/>
+<fmt:setBundle basename="language"/>
 <jsp:include page="header.jsp"/>
 
 <div class="form">
@@ -24,37 +21,37 @@
         <form method="post" action="controller" enctype="multipart/form-data">
             <input type="hidden" name="command" value="NEW_PRODUCT">
             <div class="form-outline mb-4">
-                <label class="form-label" for="productName">Name</label>
+                <label class="form-label" for="productName"><fmt:message key="product_name"/></label>
                 <input type="productName" id="productName" name="productName" class="form-control" />
             </div>
             <div class="form-outline mb-4">
-                <label class="form-label" for="quantity">Quantity</label>
+                <label class="form-label" for="quantity"><fmt:message key="_quantity"/></label>
                 <input type="number" id="quantity"  name="quantity" class="form-control" />
 
             </div>
             <div class="form-outline mb-4">
-                <label class="form-label" for="productDescription">About product:</label>
+                <label class="form-label" for="productDescription"><fmt:message key="_about"/></label>
                 <textarea type="text" id="productDescription" name="productDescription" class="form-control" rows="3" ></textarea>
             </div>
             <div class="form-outline mb-4">
-                <label class="form-label" for="price">Price</label>
+                <label class="form-label" for="price"><fmt:message key="_price"/></label>
                 <input type="price" id="price" name="price" class="form-control" />
             </div>
             <div class="form-outline mb-4">
-                <label class="form-label" for="photo">Photo</label>
+                <label class="form-label" for="photo"><fmt:message key="_img"/></label>
                 <input type="file" id="photo" name="photo" class="form-control" />
             </div>
             <div class="form-outline mb-4">
 
-                <label>Category</label>
+                <label><fmt:message key="product_category"/></label>
                 <div class="col">
                     <div class="row">
 
-                        <label for="newCategory"><input type="radio" name="newCategory" id="newCategory"> New category</label>
+                        <label for="newCategory"><input type="radio" name="newCategory" id="newCategory"> <fmt:message key="product_newCategory"/></label>
                     </div>
                     <div class="row">
 
-                        <label for="chooseCategory"><input type="radio" name="chooseCategory" id="chooseCategory"> Choose category</label>
+                        <label for="chooseCategory"><input type="radio" name="chooseCategory" id="chooseCategory"> <fmt:message key="product_chooseCategory"/></label>
                     </div>
                 </div>
                 <script type="text/javascript">
@@ -82,9 +79,7 @@
                         </c:forEach>
                 </select>
                 </div>
-                <c:if test="${errorMessage!=null}">
-                    <p class="text-danger " >${errorMessage}</p>
-                </c:if>
+                <tf:error message="${errorMessage}"/>
             </div>
 
 
@@ -92,20 +87,20 @@
 
 
             <!-- Submit button -->
-            <button type="submit" class="btn btn-primary btn-block" id="addButton">Add item</button>
+            <button type="submit" class="btn btn-primary btn-block" id="addButton"><fmt:message key="transaction_add"/></button>
 
         </form>
         <div id="newCategoryDiv" hidden>
             <form method="post" action="controller">
                 <input type="hidden" name="command" value="ADD_CATEGORY">
                 <div class="form-outline mb-4">
-                    <label class="form-label" for="categoryName">Name of category</label>
+                    <label class="form-label" for="categoryName"><fmt:message key="product_categoryName"/></label>
                     <input type="categoryName" id="categoryName" name="categoryName" class="form-control" />
-                    <label class="form-label" for="categoryTitle">Title of category</label>
+                    <label class="form-label" for="categoryTitle"><fmt:message key="_title"/></label>
                     <input type="categoryTitle" id="categoryTitle" name="categoryTitle" class="form-control" />
 
                 </div>
-                <button type="submit" disabled class="btn btn-primary btn-block">Add</button>
+                <button type="submit" disabled class="btn btn-primary btn-block"><fmt:message key="_add"/></button>
             </form>
         </div>
     </div>

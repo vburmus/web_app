@@ -1,22 +1,25 @@
 package com.my.DAO;
 
+import com.my.DB.DBManager;
 import com.my.Model.Item;
 import com.my.Model.Order;
 import com.my.Model.Transaction;
+import org.jetbrains.annotations.NotNull;
 
-import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
-import static com.my.DAO.DB.Constants.*;
+import static com.my.DB.Constants.*;
 
-public class TransactionDAO {
+public class TransactionDAO implements IDAO<Transaction> {
     private static DBManager manager = DBManager.getInstance();
     private OrderDAO orderDAO = new OrderDAO();
-    private ItemDao itemDao = new ItemDao();
-    public void addTransaction(Transaction transaction) {
+    private ItemDAO itemDao = new ItemDAO();
+
+    public void add(@NotNull Transaction transaction) {
         int res = 0;
         Connection con = null;
         ResultSet rs  = null;
@@ -48,7 +51,7 @@ public class TransactionDAO {
         }
     }
 
-    public  Transaction findTransaction(String id) {
+    public  Transaction find(String id) {
         Transaction transaction = null;
 
         try (Connection con = manager.getConnection();
@@ -56,7 +59,7 @@ public class TransactionDAO {
             ps.setString(1,id);
             ResultSet rs  = ps.executeQuery();
             if(rs.next()){
-               transaction = extractTransaction(rs);
+               transaction = extract(rs);
             }
             return transaction;
         } catch (Exception e) {
@@ -64,26 +67,12 @@ public class TransactionDAO {
         }
 
     }
-    public Order findTransactionsOrder(int transactionId){
 
-        Order order = null;
-        try(Connection con = manager.getConnection();
-        PreparedStatement ps = con.prepareStatement(SQL_SELECT_TRANSACTIONS_ORDER)){
-            ps.setInt(1,transactionId);
-            ResultSet rs  = ps.executeQuery();
-            if(rs.next()){
-                order = orderDAO.findOrderById(String.valueOf(rs.getInt(1)));
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return order;
-    }
-    public  Transaction extractTransaction(ResultSet rs) {
+    public  Transaction extract(@NotNull ResultSet rs) {
         Transaction transaction = new Transaction();
         try {
            transaction.setQuantity(rs.getInt(3));
-           transaction.setItem(ItemDao.findItem(String.valueOf(rs.getInt(2))));
+           transaction.setItem(itemDao.find(String.valueOf(rs.getInt(2))));
            transaction.setId(rs.getInt(1));
            transaction.setOrder(findTransactionsOrder(transaction.getId()));
         } catch (SQLException e) {
@@ -91,7 +80,35 @@ public class TransactionDAO {
         }
         return transaction;
     }
-    public void changeQuantity(Transaction transaction,int changedQuantity, boolean addPcs){
+
+    /**
+     * This method finds order by transaction
+     * @param transactionId
+     * @return Order
+     */
+    public Order findTransactionsOrder(int transactionId){
+
+        Order order = null;
+        try(Connection con = manager.getConnection();
+            PreparedStatement ps = con.prepareStatement(SQL_SELECT_TRANSACTIONS_ORDER)){
+            ps.setInt(1,transactionId);
+            ResultSet rs  = ps.executeQuery();
+            if(rs.next()){
+                order = orderDAO.find(String.valueOf(rs.getInt(1)));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return order;
+    }
+
+    /**
+     * This method changes quantity of item in transaction
+     * @param transaction
+     * @param changedQuantity
+     * @param addPcs
+     */
+    public void changeQuantity(@NotNull Transaction transaction, int changedQuantity, boolean addPcs){
         int unchangedQuantity = transaction.getQuantity();
 
             Connection con = null;
@@ -137,7 +154,12 @@ public class TransactionDAO {
                 }
 
         }
-        public void deleteTransaction(Transaction transaction){
+
+    /**
+     * This method deletes a transaction
+     * @param transaction
+     */
+    public void deleteTransaction(@NotNull Transaction transaction){
             Connection con = null;
         try{
             con = manager.getConnection();
@@ -167,5 +189,6 @@ public class TransactionDAO {
             manager.close(con);
         }
         }
+
 
 }

@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="tf" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -12,6 +14,8 @@
 </head>
 
 <body>
+<fmt:setLocale value="${locale}"/>
+<fmt:setBundle basename="language"/>
 <jsp:include page="header.jsp"/>
 <div class="form">
 <div class="col-12">
@@ -21,14 +25,12 @@
   <!-- Password input -->
 
 <div class="form-outline mb-4">
-    <c:if test="${errorMessage!=null}">
-        <p class="text-danger" >${errorMessage}</p>
-    </c:if>
-<label class="form-label" for="item">Product id or name</label>
+    <tf:error message="${errorMessage}"/>
+<label class="form-label" for="item"><fmt:message key="_transaction"/></label>
     <input type="text" name="item" id="item" class="form-control" />
 
 
-    <label class="form-label" for="quantity">Quantity</label>
+    <label class="form-label" for="quantity"><fmt:message key="_quantity"/></label>
     <input type="number" name="quantity" id="quantity" class="form-control" />
 
 
@@ -37,12 +39,12 @@
   <!-- 2 column grid layout for inline styling -->
 
   <!-- Submit button -->
-  <button type="submit" class="btn btn-primary btn-block">Add product</button>
+  <button type="submit" class="btn btn-primary btn-block"><fmt:message key="transaction_add"/></button>
 
 </form>
   <form action="controller" method="post">
     <input type="hidden" name="command" value="CLOSE_ORDER">
-    <button type="submit" class="btn btn-primary btn-block">Close order</button>
+    <button type="submit" class="btn btn-primary btn-block"><fmt:message key="transaction_close"/></button>
   </form>
 </div>
 </div>

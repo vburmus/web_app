@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: burmus
@@ -15,7 +16,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/lineicons.css"/>
 </head>
 <body>
-
+<fmt:setLocale value="${locale}"/>
+<fmt:setBundle basename="language"/>
 <!-- ======== footer start ======== -->
 <footer class="footer">
     <div class="container">
@@ -30,8 +32,7 @@
                 <div class="footer-widget">
 
                     <p class="desc mb-30 text-white">
-                        This cash register was made by Volodymyr Burmus, as a EPAM Java EE web-project.
-                    </p>
+                        <fmt:message key="footer_description"/> </p>
                     <ul class="socials">
                         <li>
                             <a href="jvascript:void(0)">
@@ -59,41 +60,27 @@
 
                 <div class="col-8">
                     <div class="row">
-                <div class="col-4">
+                <div class="col-6">
                     <div class="footer-widget">
                         <h3>About Us</h3>
                         <ul class="links">
-                            <li><a href="javascript:void(0)">Home</a></li>
-                            <li><a href="javascript:void(0)">Feature</a></li>
-                            <li><a href="javascript:void(0)">About</a></li>
-                            <li><a href="javascript:void(0)">Testimonials</a></li>
+                            <li><a href="javascript:void(0)"><fmt:message key="footer_home"/></a></li>
+                            <li><a href="javascript:void(0)"><fmt:message key="features"/></a></li>
+                            <li><a href="javascript:void(0)"><fmt:message key="_about"/></a></li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="col-4">
+                <div class="col-6">
                     <div class="footer-widget">
                         <h3>Features</h3>
                         <ul class="links">
-                            <li><a href="javascript:void(0)">How it works</a></li>
-                            <li><a href="javascript:void(0)">Privacy policy</a></li>
-                            <li><a href="javascript:void(0)">Terms of service</a></li>
-                            <li><a href="javascript:void(0)">Refund policy</a></li>
+                            <li><a href="javascript:void(0)"><fmt:message key="footer_howItWorks"/></a></li>
+                            <li><a href="javascript:void(0)"><fmt:message key="footer_TermsOfService"/></a></li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="col-4">
-                    <div class="footer-widget">
-                        <h3>Other Products</h3>
-                        <ul class="links">
-                            <li><a href="jvascript:void(0)">Accounting Software</a></li>
-                            <li><a href="jvascript:void(0)">Billing Software</a></li>
-                            <li><a href="jvascript:void(0)">Booking System</a></li>
-                            <li><a href="jvascript:void(0)">Tracking System</a></li>
-                        </ul>
-                    </div>
-                </div>
             </div>
                 </div>
             </div>

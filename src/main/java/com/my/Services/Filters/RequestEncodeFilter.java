@@ -9,25 +9,43 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
+import static com.my.DB.DBManager.LOGGER;
 
 
 public class RequestEncodeFilter implements Filter
 {
-    //FilterConfig object
+
     private FilterConfig filterConfig=null;
 
-    //Default constructor
+    /**
+     *Default constructor
+     */
+
     public RequestEncodeFilter()
     {
-        System.out.println("Request response encoder Filter object has been created");
+        LOGGER.info("Request response encoder Filter object has been created");
     }
 
-    //Intitialization method
+
+    /**
+     * Initialise method
+     * @param filterConfig a <code>FilterConfig</code> object containing the
+     *                     filter's configuration and initialization parameters
+     */
+    @Override
     public void init(FilterConfig filterConfig)
     {
         this.filterConfig=filterConfig;
     }
 
+    /**
+     * Method which sets the encoding to UTF-8
+     * @param request  the <code>ServletRequest</code> object contains the client's request
+     * @param response the <code>ServletResponse</code> object contains the filter's response
+     * @param chain    the <code>FilterChain</code> for invoking the next filter or the resource
+     * @throws IOException
+     * @throws ServletException
+     */
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException
     {
         //Setting the character set for the request
@@ -40,6 +58,9 @@ public class RequestEncodeFilter implements Filter
         response.setContentType("text/html; charset=UTF-8");
     }
 
+    /**
+     * Destroy method
+     */
     public void destroy() {
         this.filterConfig=null;
     }

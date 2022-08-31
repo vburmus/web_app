@@ -1,9 +1,10 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import = "com.my.DAO.DB.Fields" %>
+<%@ page import = "com.my.DB.Fields" %>
 <%@ page import="com.my.Model.Employee" %>
-<%@ page import="com.my.Command.PageEnum" %>
+<%@ page import="com.my.Command.Enums.PageEnum" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Profile</title>
@@ -14,9 +15,8 @@
 <jsp:useBean id="user" type="com.my.Model.Employee" scope="session"/>
 </head>
 <body>
-<%
-    System.out.println(((Employee)pageContext.getSession().getAttribute("user")).getRole());
-%>
+<fmt:setLocale value="${locale}"/>
+<fmt:setBundle basename="language"/>
 <jsp:include page="header.jsp"/>
 
 
@@ -29,11 +29,11 @@
                     <div class="col-2">
                         <c:choose>
                         <c:when test="${user.role==Fields.ADMIN}">
-                        <h5  class="">Your id</h5>
+                        <h5  class=""><fmt:message key="profile_id"/></h5>
                             <p>${user.id}</p>
                         </c:when>
                             <c:when test="${user.role!=Fields.ADMIN}">
-                                <h5  class="">Orders</h5>
+                                <h5  class=""><fmt:message key="profile_orders"/></h5>
                                 <p>${user.orders}</p>
                             </c:when>
 
@@ -41,11 +41,11 @@
 
                     </div>
                     <div class="col-4">
-                        <h5  class="">Role</h5>
+                        <h5  class=""><fmt:message key="_role"/></h5>
                         <p class="">${user.roleName}</p>
                     </div>
                     <div class="col-2">
-                        <h5  class="">Email</h5>
+                        <h5  class=""><fmt:message key="_email"/></h5>
                         <p class="">${user.email}</p>
                     </div>
                 </div>

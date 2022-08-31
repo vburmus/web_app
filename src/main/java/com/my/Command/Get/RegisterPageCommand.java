@@ -5,9 +5,12 @@ import com.my.Command.ICommand;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import static com.my.DB.DBManager.LOGGER;
+
 public class RegisterPageCommand implements ICommand {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) {
+        LOGGER.info("Register page.");
         return "register";
     }
 }

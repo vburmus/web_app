@@ -1,10 +1,10 @@
 package com.my.Command.Post;
 
 import com.my.Command.ICommand;
-import com.my.DAO.CategoryDao;
+import com.my.DAO.CategoryDAO;
 import com.my.Model.Category;
 import com.my.Model.Item;
-import com.my.DAO.ItemDao;
+import com.my.DAO.ItemDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,17 +13,20 @@ import javax.servlet.http.Part;
 import java.io.IOException;
 import java.util.Collection;
 
+import static com.my.DB.DBManager.LOGGER;
+
 public class NewProductCommand implements ICommand {
     private int id = 0;
-    private ItemDao itemDao;
-    private CategoryDao categoryDao = new CategoryDao();
+    private ItemDAO itemDao;
+    private CategoryDAO categoryDao = new CategoryDAO();
     public NewProductCommand(){
-        this.itemDao = new ItemDao();
+        this.itemDao = new ItemDAO();
     }
 
     @Override
 
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        LOGGER.info("USer is trying to make a product.");
         String name = request.getParameter("productName");
         String quantity = request.getParameter("quantity");
         String productDescription = request.getParameter("productDescription");
@@ -37,8 +40,10 @@ public class NewProductCommand implements ICommand {
             Item item = new Item();
             System.out.println(request.getParameter("selectCategory"));
             if ( !categoryName.equals("")) {
-                Category category = categoryDao.findCategory(request.getParameter("selectCategory"));
-                item.setCategory(category);
+                Category category = categoryDao.find(request.getParameter("selectCategory"));
+                if(category!=null) {
+                    item.setCategory(category);
+                }
                 item.setName(name);
                 item.setQuantity(Integer.valueOf(quantity));
                 item.setTitle(productDescription);
@@ -72,11 +77,8 @@ public class NewProductCommand implements ICommand {
                 } catch (ServletException e) {
                     throw new RuntimeException(e);
                 }
-                try {
-                    this.itemDao.addItem(item);
-                } catch (ClassNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
+                this.itemDao.add(item);
+                LOGGER.info("Success.");
             }else{
                 request.getSession().setAttribute("errorMessage", "Category is wrong!");
 

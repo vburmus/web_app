@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/employees.css"/>
@@ -9,13 +10,15 @@
     <jsp:useBean id="user" scope="session" type="com.my.Model.Employee"/>
 </head>
 <body>
+<fmt:setLocale value="${locale}"/>
+<fmt:setBundle basename="language"/>
 <jsp:include page="header.jsp" />
 <c:choose>
 <c:when test="${employee==null}">
     <div class="message">
         <div class="row ">
             <div class="bg-warning rounded-3 col-8 offset-2">
-                <h3 class="text-white">Please add orders!</h3>
+                <h3 class="text-white"><fmt:message key="employees_noOne"/></h3>
             </div>
         </div>
     </div>
@@ -40,15 +43,15 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body p-4">
-                                        <h6>Information</h6>
+                                        <h6><fmt:message key="employees_information" /> :</h6>
                                         <hr class="mt-0 mb-4">
                                         <div class="row pt-1">
                                             <div class="col-6 mb-3">
-                                                <h6>Email</h6>
+                                                <h6><fmt:message key="emp_mail"/></h6>
                                                 <p class="text-muted tex">${employee.email}</p>
                                             </div>
                                             <div class="col-6 mb-3">
-                                                <h6>Phone</h6>
+                                                <h6><fmt:message key="emp_mobile"/></h6>
                                                 <p class="text-muted">${employee.mobile}</p>
                                             </div>
                                         </div>
@@ -61,22 +64,22 @@
                                                     <input type="hidden" name="command" value="UPDATE_ROLES">
                                                     <input type="hidden" name="page" value="${page}">
                                                     <div class="form-group">
-                                                        <h6 >Role:</h6>
+                                                        <h6 ><fmt:message key="_role"/>:</h6>
                                                         <p>${employee.roleName}</p>
                                                         <c:if test="${user.role==1 && employee.role!=1}">
-                                                        <label for="selectRole">Change Role</label>
+                                                        <label for="selectRole"><fmt:message key="employees_changeRole"/></label>
                                                         <select class="form-control" id="selectRole" name="selectRole">
                                                             <c:forEach var="role" items="${roles}">
                                                                 <option>${role}</option>
                                                             </c:forEach>
                                                         </select>
                                                     </div>
-                                                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                                                    <button type="submit" class="btn btn-primary btn-block"><fmt:message key="submitButton"/></button>
                                                     </c:if>
                                                 </form>
                                             </div>
                                             <div class="col-6 mb-3">
-                                                <h6>Orders</h6>
+                                                <h6><fmt:message key="profile_orders" /></h6>
                                                 <p class="text-muted">${employee.orders}</p>
                                             </div>
                                         </div>
@@ -91,7 +94,7 @@
                         <div class="row">
                             <div class="col-3 justify-content-start">
                                 <c:if test="${page!=1}">
-                                    <a id="prev" class="page-link text-center" href="${pageContext.request.contextPath}/controller?command=EMPLOYEES_PAGE&page=${page-1}" tabindex="-1">Previous</a>
+                                    <a id="prev" class="page-link text-center" href="${pageContext.request.contextPath}/controller?command=EMPLOYEES_PAGE&page=${page-1}" tabindex="-1"><fmt:message key="previousButton"/></a>
                                 </c:if>
                             </div>
                             <div class="col-6">
@@ -99,7 +102,7 @@
 
                             <div class="col-3 justify-content-end">
                                 <c:if test="${page!=pages}">
-                                    <a class="page-link text-center" href="${pageContext.request.contextPath}/controller?command=EMPLOYEES_PAGE&page=${page+1}">Next</a>
+                                    <a class="page-link text-center" href="${pageContext.request.contextPath}/controller?command=EMPLOYEES_PAGE&page=${page+1}"><fmt:message key="nextButton"/></a>
                                 </c:if>
                             </div>
                         </div>
@@ -113,36 +116,5 @@
     </div>
 </c:when>
 </c:choose>
-      <%--  <c:if test="${user.getRole()!=1}">
-        <div class="card mb-3" style="max-width: 540px;">
-            <div class="row no-gutters">
-                <div class="col-md-4">
-                    <p>${user.getImageName()}</p>
-                    <img src="${pageContext.request.contextPath}/assets/img/users/${user.getImageName()}" class="card-img" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <c class="card-body">
-
-                        <h5 class="card-title">${user.getName()} ${user.getSurname()}</h5>
-                        <p class="card-text">${user.getRole()}</p>
-                        <p class="card-text" >${user.getEmail()}</p>
-                        <c:choose>
-                        <c:when test="${user.getRole()==0}">
-
-                        </c:when>
-                        <c:when test="${user.getRole()!=0}">
-                            <p class="card-text">${user.getRole()}</p>
-                        </c:when>
-                        </c:choose>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </c:if>--%>
-
-
-
-
-
 </body>
 </html>

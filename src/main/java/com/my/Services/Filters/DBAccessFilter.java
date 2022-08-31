@@ -1,20 +1,31 @@
 
 package com.my.Services.Filters;
 
-import com.my.DAO.DBManager;
+import com.my.DB.DBManager;
+import org.apache.log4j.Logger;
 
 import javax.servlet.*;
-import javax.servlet.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
+
+import static com.my.DB.DBManager.LOGGER;
 
 public class DBAccessFilter implements Filter {
     Connection con;
     ServletContext ctx;
     DBManager dbManager = DBManager.getInstance();
+
+
+    /**
+     * This filters checks the access to database
+     * @param request  the <code>ServletRequest</code> object contains the client's request
+     * @param response the <code>ServletResponse</code> object contains the filter's response
+     * @param chain    the <code>FilterChain</code> for invoking the next filter or the resource
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
         HttpServletResponse resp = (HttpServletResponse) response;
@@ -22,7 +33,7 @@ public class DBAccessFilter implements Filter {
         boolean access = false;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            System.out.println("#Access");
+            LOGGER.info("Checking access...");
             con = dbManager.getConnection();
             ctx = req.getServletContext();
             if(con!=null)
@@ -35,8 +46,10 @@ public class DBAccessFilter implements Filter {
         }
             request.getServletContext().setAttribute("access", access);
         if(access){
+            LOGGER.info("Access true");
            chain.doFilter(request, response);
         }else{
+            LOGGER.info("Access denied");
             request.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(request,response);
         }
 

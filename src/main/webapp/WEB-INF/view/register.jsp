@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="tf" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 
@@ -12,6 +14,8 @@
 
 </head>
 <body>
+<fmt:setLocale value="${locale}"/>
+<fmt:setBundle basename="language"/>
 <jsp:include page="header.jsp"/>
 <div class="form">
 <div class="col-12">
@@ -19,49 +23,47 @@
       <form method="post" action="controller" enctype="multipart/form-data" >
           <input type="hidden" name="command" value="REGISTER"/>
         <div class="form-outline mb-4">
-            <label class="form-label" for="name">Name</label>
+            <label class="form-label" for="name"><fmt:message key="_name"/></label>
             <input type="name" id="name" name="name" class="form-control" />
         </div>
           <div class="form-outline mb-4">
-              <label class="form-label" for="surname">Surname</label>
+              <label class="form-label" for="surname"><fmt:message key="_surname"/></label>
               <input type="surname" id="surname"  name="surname" class="form-control" />
           </div>
           <div class="form-outline mb-4">
-              <label class="form-label" for="mobile">Mobile</label>
+              <label class="form-label" for="mobile"><fmt:message key="_mobile"/></label>
               <input type="mobile" id="mobile" name="mobile" class="form-control" />
           </div>
 
           <!-- Email input -->
           <div class="form-outline mb-4">
-              <label class="form-label" for="email">Email address</label>
+              <label class="form-label" for="email"><fmt:message key="_email"/></label>
               <input type="email" id="email" name="email"  class="form-control" />
           </div>
           <div class="form-outline mb-4">
-              <label class="form-label" for="password">Password</label>
+              <label class="form-label" for="password"><fmt:message key="_password"/></label>
               <input type="password" id="password" name="password" class="form-control" />
           </div>
           <div class="form-outline mb-4">
-              <label class="form-label" for="text">About you:</label>
+              <label class="form-label" for="text"><fmt:message key="_about"/></label>
               <textarea type="text" id="text" name="text" class="form-control" rows="3" ></textarea>
           </div>
           <div class="form-outline mb-4">
-              <label class="form-label" for="photo">Photo</label>
+              <label class="form-label" for="photo"><fmt:message key="_img"/></label>
               <input type="file" id="photo" name="photo" class="form-control" />
-              <c:if test="${errorMessage!=null}">
-                  <p class="text-danger " >${errorMessage}</p>
-              </c:if>
+              <tf:error message="${errorMessage}"/>
           </div>
           <div class="row mb-4">
               <div class="col d-flex justify-content-center">
     </div>
     <div class="col">
       <!-- Simple link -->
-      <a href="controller?command=LOGIN_PAGE">Already have an account?</a>
+      <a href="controller?command=LOGIN_PAGE"><fmt:message key="_signIn"/></a>
     </div>
   </div>
 
   <!-- Submit button -->
-  <button id="submit" type="submit" class="btn btn-primary btn-block">Sign up</button>
+  <button id="submit" type="submit" class="btn btn-primary btn-block"><fmt:message key="signUp"/></button>
 </form>
 
             
