@@ -7,7 +7,7 @@
 
     <tag>
         <name>order</name>
-        <tag-class>com.my.Services.Tags.ParamsTag</tag-class>
+        <tag-class>com.my.services.tags.ParamsTag</tag-class>
         <attribute>
             <name>orderId</name>
             <required>true</required>

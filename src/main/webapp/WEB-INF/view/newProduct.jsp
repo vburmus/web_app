@@ -100,7 +100,7 @@
                     <input type="categoryTitle" id="categoryTitle" name="categoryTitle" class="form-control" />
 
                 </div>
-                <button type="submit" disabled class="btn btn-primary btn-block"><fmt:message key="_add"/></button>
+                <button type="submit"  class="btn btn-primary btn-block"><fmt:message key="_add"/></button>
             </form>
         </div>
     </div>

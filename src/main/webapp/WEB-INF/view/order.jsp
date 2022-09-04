@@ -1,12 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tf" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page import="com.my.DB.Fields" %>
+<%@ page import="com.my.db.Fields" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <jsp:useBean id="order" scope="request" type="com.my.Model.Order"/>
-    <jsp:useBean id="user" scope="session" type="com.my.Model.Employee"/>
+    <jsp:useBean id="order" scope="request" type="com.my.model.Order"/>
+    <jsp:useBean id="user" scope="session" type="com.my.model.Employee"/>
     <title>Title</title>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/order.css"/>

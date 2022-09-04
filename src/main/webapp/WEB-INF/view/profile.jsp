@@ -1,8 +1,8 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import = "com.my.DB.Fields" %>
-<%@ page import="com.my.Model.Employee" %>
-<%@ page import="com.my.Command.Enums.PageEnum" %>
+<%@ page import = "com.my.db.Fields" %>
+<%@ page import="com.my.model.Employee" %>
+<%@ page import="com.my.command.enums.PageEnum" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/profile.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/animate.css"/>
-<jsp:useBean id="user" type="com.my.Model.Employee" scope="session"/>
+<jsp:useBean id="user" type="com.my.model.Employee" scope="session"/>
 </head>
 <body>
 <fmt:setLocale value="${locale}"/>

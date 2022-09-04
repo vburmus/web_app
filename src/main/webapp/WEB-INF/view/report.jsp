@@ -12,8 +12,8 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/z-report.css"/>
-<jsp:useBean id="maxEmployee" type="com.my.Model.Employee" scope="session"/>
-    <jsp:useBean id="biggestOrder" type="com.my.Model.Order" scope="session"/>
+<jsp:useBean id="maxEmployee" type="com.my.model.Employee" scope="session"/>
+    <jsp:useBean id="biggestOrder" type="com.my.model.Order" scope="session"/>
 </head>
 <body>
 <fmt:setLocale value="${locale}"/>

@@ -1,5 +1,5 @@
-<%@ page import="com.my.Model.Employee" %>
-<%@ page import="com.my.DB.Fields" %>
+<%@ page import="com.my.model.Employee" %>
+<%@ page import="com.my.db.Fields" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -82,7 +82,7 @@
                       <a  href="${pageContext.request.contextPath}/controller?command=PRODUCTS_PAGE&page=1"><fmt:message key="header_products"/></a>
                     </c:when>
                     <c:when test="${(pageContext.session.getAttribute('user').role==Fields.CASHIER||(pageContext.session.getAttribute('user').role==Fields.SENIOR_CASHIER))}">
-                      <a  href="${pageContext.request.contextPath}/controller?command=ORDERS_PAGE"><fmt:message key="header_orders"/></a>
+                      <a  href="${pageContext.request.contextPath}/controller?command=ORDERS_PAGE&page=1"><fmt:message key="header_orders"/></a>
                     </c:when>
                   </c:choose>
 
@@ -93,7 +93,7 @@
                       <a class="page-scroll" href="#about"><fmt:message key="_about"/></a>
                     </c:when>
                     <c:when test="${(pageContext.session.getAttribute('user').role==Fields.ADMIN)}">
-                      <a  href="${pageContext.request.contextPath}/controller?command=ORDERS_PAGE"><fmt:message key="header_orders"/></a>
+                      <a  href="${pageContext.request.contextPath}/controller?command=ORDERS_PAGE&page=1"><fmt:message key="header_orders"/></a>
                     </c:when>
                     <c:when test="${(pageContext.session.getAttribute('user').role==Fields.COMMODITY_EXERT)}">
                       <a  href="${pageContext.request.contextPath}/controller?command=NEW_PRODUCT_PAGE"><fmt:message key="header_addProduct"/></a>

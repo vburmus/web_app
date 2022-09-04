@@ -18,7 +18,7 @@
     </error-page>
         <filter>
             <filter-name>EncodingFilter</filter-name>
-            <filter-class>com.my.Services.Filters.RequestEncodeFilter</filter-class>
+            <filter-class>com.my.services.filters.RequestEncodeFilter</filter-class>
             <init-param>
                 <param-name>encoding</param-name>
                 <param-value>UTF-8</param-value>
@@ -26,7 +26,7 @@
         </filter>
    <filter>
         <filter-name>DBAccessFilter</filter-name>
-        <filter-class>com.my.Services.Filters.DBAccessFilter</filter-class>
+        <filter-class>com.my.services.filters.DBAccessFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>DBAccessFilter</filter-name>
@@ -34,7 +34,7 @@
     </filter-mapping>
     <filter>
         <filter-name>MainPageFilter</filter-name>
-        <filter-class>com.my.Services.Filters.MainPageFilter</filter-class>
+        <filter-class>com.my.services.filters.MainPageFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>EncodingFilter</filter-name>

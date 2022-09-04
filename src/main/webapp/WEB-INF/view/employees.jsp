@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/employees.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/animate.css"/>
-<jsp:useBean id="employee" scope="request" type="com.my.Model.Employee"/>
-    <jsp:useBean id="user" scope="session" type="com.my.Model.Employee"/>
+<jsp:useBean id="employee" scope="request" type="com.my.model.Employee"/>
+    <jsp:useBean id="user" scope="session" type="com.my.model.Employee"/>
 </head>
 <body>
 <fmt:setLocale value="${locale}"/>

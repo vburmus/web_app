@@ -16,6 +16,7 @@
     </head>
 <body>
 <fmt:setLocale value="${locale}"/>
+
 <fmt:setBundle basename="language"/>
 <jsp:include page="header.jsp"/>
 <input type="hidden" id="access" value="${pageContext.servletContext.getAttribute("access")}">

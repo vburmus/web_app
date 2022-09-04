@@ -16,7 +16,7 @@
 <fmt:setBundle basename="language"/>
 <div class="form">
 <div class="col-12">
-<jsp:include page="header.jsp"/>
+
       <form action="controller" method="post">
 <input type="hidden" name="command" value="LOGIN">
 

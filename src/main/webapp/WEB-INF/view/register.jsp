@@ -16,7 +16,7 @@
 <body>
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="language"/>
-<jsp:include page="header.jsp"/>
+
 <div class="form">
 <div class="col-12">
 
