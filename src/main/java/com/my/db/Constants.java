@@ -13,6 +13,8 @@ public class Constants {
             "SELECT * FROM items WHERE id = ? ";
     public static final String SQL_SELECT_USER_BY_ID =
             "SELECT * FROM users WHERE id = ? ";
+    public static final String SQL_SELECT_USER_BY_EMAIL =
+            "SELECT * FROM users WHERE email = ? ";
     public static final String SQL_SELECT_ITEM_BY_NAME =
             "SELECT * FROM items WHERE name = ? ";
     public static final String SQL_UPDATE_EMPLOYEE_ORDERS =
@@ -56,6 +58,8 @@ public class Constants {
             "DELETE FROM order_has_transaction WHERE transaction_id = ?";
     public static final String SQL_DELETE_ORDER =
             "DELETE FROM orders WHERE id = ?";
+    public static final String SQL_READY_ORDER =
+            "UPDATE orders SET isReady=1 WHERE id = ?";
     public static final String SQL_ADD_CATEGORY =
             "INSERT INTO category (name,title) VALUES (?,?)";
     public static final String SQL_ADD_CATEGORY_ITEM =

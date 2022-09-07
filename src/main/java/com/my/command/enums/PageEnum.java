@@ -30,7 +30,8 @@ public enum PageEnum {
     X_REPORT(new XReportCommand()),
     Z_REPORT(new ZReportCommand()),
     LANG_SETUP(new LangSetUpCommand()),
-    ADD_CATEGORY(new NewCategoryCommand());
+    ADD_CATEGORY(new NewCategoryCommand()),
+    READY_ORDER(new ReadyOrderCommand());
 
 
     private ICommand command;

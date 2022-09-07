@@ -37,7 +37,10 @@ public class RegisterCommand implements ICommand {
 
             request.getSession().setAttribute("errorMessage", "You entered wrong parameters!");
             return request.getContextPath() + "/controller?command=REGISTER_PAGE";
-        } else {
+        }else if(employeeDao.find(email)!=null){
+            request.getSession().setAttribute("errorMessage", "User with this email has already been registered!");
+            return request.getContextPath() + "/controller?command=REGISTER_PAGE";
+        }else {
 
             Employee employee = new Employee();
             employee.setName(name);

@@ -84,15 +84,19 @@ public class EmployeeDAO implements IDAO<Employee> {
         return employee;
     }
 
-    public  Employee find(String id){
+    public  Employee find(String employee){
         LOGGER.info("Finding employee...");
 
         try(Connection con = manager.getConnection()){
             PreparedStatement preparedStatement = null;
             ResultSet rs = null;
+            if(employee.contains("@")){
+                preparedStatement = con.prepareStatement(SQL_SELECT_USER_BY_EMAIL);
+                preparedStatement.setString(1, employee);
+            }else {
                 preparedStatement = con.prepareStatement(SQL_SELECT_USER_BY_ID);
-                preparedStatement.setInt(1, Integer.parseInt(id));
-
+                preparedStatement.setInt(1, Integer.parseInt(employee));
+            }
             rs = preparedStatement.executeQuery();
             Employee extractedEmployee = null;
             if(rs.next()){

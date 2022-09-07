@@ -90,6 +90,7 @@ public class OrderDAO implements IDAO<Order>{
            order.setUsers_id(rs.getInt("user"));
            order.setDate(rs.getString("created"));
            order.setSummary(rs.getFloat("summary"));
+           order.setIsReady(rs.getInt("isReady"));
            order.setTransactions(extractOrderTransactions(order.getId()));
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -230,5 +231,22 @@ public class OrderDAO implements IDAO<Order>{
             itemDao.updateItemQuantity(item);
         }
     }
+    public void readyOrder(@NotNull Order order){
 
+        Connection con = null;
+        try{
+
+            con = manager.getConnection();
+            PreparedStatement ps = con.prepareStatement(SQL_READY_ORDER);
+
+            ps.setInt(1,order.getId());
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            manager.close(con);
+        }
+
+    }
 }

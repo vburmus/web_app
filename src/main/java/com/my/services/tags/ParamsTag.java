@@ -25,34 +25,48 @@ public class ParamsTag extends TagSupport {
         try {
             String button;
             String delete;
+            String close;
+            String orderStr;
             if(location.equals("ua")){
                 button = "Переглянути";
                 delete = "Видалити";
+                close = "Закрити";
+                orderStr = "Замовлення №:";
             }else{
                 button = "Check";
                 delete = "Delete";
+                close = "Close";
+                orderStr = "Order №:";
             }
            out.print("<div class=\"card-body\">" +
-                   " <h4 class=\"card-title\">№:" + order.getId() +"</h4> " +
+                   " <h4 class=\"card-title\">"+orderStr + order.getId() +"</h4> " +"<hr>"+
                    "<p class=\"card-text\">"+ order.getSummary()+"$</p> " +
-                   "<div class=\"row\"> " +
-                   "<div class=\"col-3\">" +
-                   " <form method=\"get\" action=\"controller\"> " +
-                   "<input type=\"hidden\" name=\"orderId\" value=\"" + order.getId() +"\"> " +
-                   "<input type=\"hidden\" name=\"command\" value=\"ORDER_PAGE\">" +
-                   " <button type=\"submit\" class=\"btn-light\" >"+button+"</button>" +
-                   " </form> " +
-                   "</div> " +
-                   "<div class=\"col-3\"> ");
-                    if(user.getRole() == Fields.SENIOR_CASHIER) {
-                       out.print("<form method=\"post\" action=\"controller\"> " +
-                                "<input type=\"hidden\" name=\"orderId\" value=\""+ order.getId()+"\"> " +
-                                "<input type=\"hidden\" name=\"command\" value=\"DELETE_ORDER\"/> " +
-                                "<button type=\"submit\" class=\"btn-light align-bottom\">"+delete+"</button> </form> ");
+                   "<div class=\"row\"> ");
+            if(order.getIsReady()==0) {
+                out.print("<div class=\"col-3\">" +
+                        " <form method=\"get\" action=\"controller\"> " +
+                        "<input type=\"hidden\" name=\"orderId\" value=\""+  order.getId() + "\"> " +
+                        "<input type=\"hidden\" name=\"command\" value=\"ORDER_PAGE\">" +
+                        " <button type=\"submit\" class=\"btn-light\" >" + button + "</button>" +
+                        " </form> " +
+                        "</div>");
 
-                    }
+                if (user.getRole() == Fields.SENIOR_CASHIER) {
+
+                    out.print("<div class=\"col-3\"> <form method=\"post\" action=\"controller\"> " +
+                            "<input type=\"hidden\" name=\"orderId\" value=\"" + order.getId() + "\"> " +
+                            "<input type=\"hidden\" name=\"command\" value=\"DELETE_ORDER\"/> " +
+                            "<button type=\"submit\" class=\"btn-light align-bottom\">" + delete + "</button> </form></div> ");
+
+
+                    out.print("<div class=\"col-3\"> <form method=\"post\" action=\"controller\"> " +
+                            "<input type=\"hidden\" name=\"orderId\" value=\"" + order.getId() + "\"> " +
+                            "<input type=\"hidden\" name=\"command\" value=\"READY_ORDER\"/> " +
+                            "<button type=\"submit\" class=\"btn-light align-bottom\">" + close + "</button> </form> </div>");
+                }
+            }
                     out.print(
-                   " </div> </div> " +
+                   " </div> " +
                    "</div> " +
                    "<div class=\"row\">");
         } catch (IOException e) {

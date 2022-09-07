@@ -37,6 +37,9 @@ public class NewProductCommand implements ICommand {
         if(name.equals("")||quantity.equals("")||price.equals("")){
             request.getSession().setAttribute("errorMessage", "Items parameters are wrong!");
 
+        }else if(itemDao.find(name)!=null){
+            request.getSession().setAttribute("errorMessage", "This item already exists!");
+
         }else {
             Item item = new Item();
             if ( !categoryName.equals("")) {

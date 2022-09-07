@@ -13,6 +13,7 @@ public class Order {
     private int users_id;
     private float summary;
     private TransactionDAO transactionDAO ;
+    int isReady;
 
 
     /**
@@ -25,6 +26,7 @@ public class Order {
         this.date = LocalDateTime.now();
         this.users_id = users_id;
         this.summary = 0;
+        this.isReady = 0;
         transactionDAO  = new TransactionDAO();
     }
 
@@ -40,6 +42,7 @@ public class Order {
         this.date = LocalDateTime.now();
         this.users_id = users_id;
         this.summary = 0;
+        this.isReady = 0;
         transactionDAO = new TransactionDAO(true);
     }
     /**
@@ -47,8 +50,18 @@ public class Order {
      * @param nr
      */
     public void addTransaction(Transaction nr){
+       Transaction transaction = transactions.stream()
+                .filter(x -> x.getItem().getName().equals(nr.getItem().getName()))
+                .findAny().orElse(null);
+        if(transaction!=null){
+            transactions.remove(transaction);
+            transaction.setQuantity(transaction.getQuantity() + nr.getQuantity());
+            transactionDAO.changeQuantity(transaction, transaction.getQuantity(), true);
+            transactions.add(transaction);
+        }else{
         transactions.add(nr);
         this.transactionDAO.add(nr);
+        }
     }
     public float getSummary() {
         return summary;
@@ -59,6 +72,11 @@ public class Order {
     public int getId() {
         return id;
     }
+
+    public int getIsReady() {
+        return isReady;
+    }
+
     public int getUsers_id() {
         return users_id;
     }
@@ -66,6 +84,11 @@ public class Order {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
         return date.format(dtf);
     }
+
+    public void setIsReady(int isReady) {
+        this.isReady = isReady;
+    }
+
     public void setId(int id) {
         this.id = id;
     }

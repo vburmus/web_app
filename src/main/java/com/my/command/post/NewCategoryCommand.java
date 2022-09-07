@@ -18,7 +18,9 @@ public class NewCategoryCommand implements ICommand {
          String title = req.getParameter("categoryTitle");
          if(name==null){
              req.getSession().setAttribute("errorMessage", "Your category name is null!");
-         }else{
+         }else if(categoryDao.find(name)!=null){
+             req.getSession().setAttribute("errorMessage", "This category already exists!");
+        }else{
              Category category = new Category();
              category.setName(name);
              category.setTitle(title);

@@ -227,3 +227,6 @@ ADD CONSTRAINT `fk_items_has_transaction_transaction1`
   REFERENCES `my`.`transaction` (`id`)
   ON DELETE CASCADE
   ON UPDATE CASCADE;
+ALTER TABLE `my`.`orders`
+    ADD COLUMN `isReady` BIT NULL DEFAULT 0 AFTER `summary`;
+

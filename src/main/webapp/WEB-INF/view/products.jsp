@@ -31,13 +31,17 @@
 <div class="card-group col-3">
 
     <div class="card">
+      <div class="card-image">
       <img class="card-img-top" src="${pageContext.request.contextPath}/assets/img/items/${item.getPhoto()}">
-      <div class="card-body">
-        <h5 class="card-title">${item.getName()}</h5>
-        <p class="card-text">${item.getTitle()}</p>
       </div>
       <div class="card-footer">
-        <h6 class="card-text"><fmt:message key="_price"/>: ${item.getPrice()}</h6>
+        <div class="card-body">
+        <h5 class="card-title">${item.getName()}</h5>
+        <p class="card-text">${item.getTitle()}</p>
+          <p class="card-text">${item.getCategory()}</p>
+      </div>
+
+        <h6 class="card-text"><fmt:message key="_price"/>: ${item.getPrice()}$</h6>
         <small class="text-muted"><fmt:message key="_quantity"/>: ${item.getQuantity()}</small>
       </div>
     </div>
