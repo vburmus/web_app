@@ -1,0 +1,405 @@
+2022-09-03 12:31 [ INFO]                 DBManager:    25 - Request response encoder Filter object has been created
+2022-09-03 12:31 [ INFO]                 DBManager:    37 - DataSource was made.
+2022-09-03 12:31 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:31 [ INFO]                 DBManager:    14 - ServletContext attribute added::{access,true}
+2022-09-03 12:31 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:31 [ INFO]                 DBManager:    14 - ServletContext attribute added::{org.apache.jasper.runtime.JspApplicationContextImpl,org.apache.jasper.runtime.JspApplicationContextImpl@5f599fd6}
+2022-09-03 12:31 [ INFO]                 DBManager:    14 - ServletContext attribute added::{org.apache.jasper.compiler.ELInterpreter,org.apache.jasper.compiler.ELInterpreterFactory$DefaultELInterpreter@526b8123}
+2022-09-03 12:31 [ INFO]                 DBManager:    14 - ServletContext attribute added::{org.apache.jasper.compiler.StringInterpreter,org.apache.jasper.compiler.StringInterpreterFactory$DefaultStringInterpreter@c7bbaea}
+2022-09-03 12:31 [ INFO]                 DBManager:    13 - Session Created:: ID=6687D184F1783FEEECC7AD3BB1CD9D6F
+2022-09-03 12:31 [ INFO]                 DBManager:    23 - Index page.
+2022-09-03 12:31 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:31 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:31 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:31 [ INFO]                 DBManager:    13 - Session Created:: ID=D9B7F721A3125512CFF28A18BFE3265D
+2022-09-03 12:31 [ INFO]                 DBManager:    23 - Index page.
+2022-09-03 12:31 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:31 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:31 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:31 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:31 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:31 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:31 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:31 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:31 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:31 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:31 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:31 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:31 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:31 [ WARN]                 DBManager:    29 - User has access to page.
+2022-09-03 12:31 [ WARN]                 DBManager:    30 - UTF-8
+2022-09-03 12:31 [ INFO]                 DBManager:    37 - #GET
+2022-09-03 12:31 [ INFO]                 DBManager:    13 - Login page.
+2022-09-03 12:31 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:31 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:31 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:31 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:31 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:31 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:31 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:31 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:31 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:31 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:31 [ WARN]                 DBManager:    29 - User has access to page.
+2022-09-03 12:31 [ WARN]                 DBManager:    30 - UTF-8
+2022-09-03 12:31 [ INFO]                 DBManager:    60 - #POST
+2022-09-03 12:31 [ INFO]                 DBManager:    21 - User is trying to log in.
+2022-09-03 12:31 [ INFO]                 DBManager:    51 - Success.
+2022-09-03 12:31 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:31 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:31 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:31 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:31 [ INFO]                 DBManager:    26 - User have access to this page.
+2022-09-03 12:31 [ INFO]                 DBManager:    37 - #GET
+2022-09-03 12:31 [ INFO]                 DBManager:    13 - Profile page.
+2022-09-03 12:31 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:31 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:31 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:31 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:31 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:31 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:31 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:31 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:31 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:31 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:31 [ INFO]                 DBManager:    33 - User has access to page.
+2022-09-03 12:31 [ INFO]                 DBManager:    37 - #GET
+2022-09-03 12:31 [ INFO]                 DBManager:    13 - Transaction page.
+2022-09-03 12:31 [ INFO]                 DBManager:    25 - Request response encoder Filter object has been created
+2022-09-03 12:31 [ INFO]                 DBManager:    37 - DataSource was made.
+2022-09-03 12:31 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:31 [ INFO]                 DBManager:    14 - ServletContext attribute added::{access,true}
+2022-09-03 12:31 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:31 [ INFO]                 DBManager:    14 - ServletContext attribute added::{org.apache.jasper.runtime.JspApplicationContextImpl,org.apache.jasper.runtime.JspApplicationContextImpl@14455b93}
+2022-09-03 12:31 [ INFO]                 DBManager:    14 - ServletContext attribute added::{org.apache.jasper.compiler.ELInterpreter,org.apache.jasper.compiler.ELInterpreterFactory$DefaultELInterpreter@1d2c30aa}
+2022-09-03 12:31 [ INFO]                 DBManager:    14 - ServletContext attribute added::{org.apache.jasper.compiler.StringInterpreter,org.apache.jasper.compiler.StringInterpreterFactory$DefaultStringInterpreter@26252f84}
+2022-09-03 12:31 [ INFO]                 DBManager:    13 - Session Created:: ID=65A032C308242743B8D50764284125CB
+2022-09-03 12:31 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:31 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:31 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:31 [ INFO]                 DBManager:    13 - Session Created:: ID=65B5420B02068BCC9C29484E560328B5
+2022-09-03 12:31 [ INFO]                 DBManager:    23 - Index page.
+2022-09-03 12:31 [ INFO]                 DBManager:    23 - Index page.
+2022-09-03 12:31 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:31 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:31 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:31 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:31 [ WARN]                 DBManager:    29 - User has access to page.
+2022-09-03 12:31 [ WARN]                 DBManager:    30 - UTF-8
+2022-09-03 12:31 [ INFO]                 DBManager:    37 - #GET
+2022-09-03 12:31 [ INFO]                 DBManager:    13 - Login page.
+2022-09-03 12:32 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:32 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:32 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:32 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:32 [ WARN]                 DBManager:    29 - User has access to page.
+2022-09-03 12:32 [ WARN]                 DBManager:    30 - UTF-8
+2022-09-03 12:32 [ INFO]                 DBManager:    60 - #POST
+2022-09-03 12:32 [ INFO]                 DBManager:    21 - User is trying to log in.
+2022-09-03 12:32 [ INFO]                 DBManager:    51 - Success.
+2022-09-03 12:32 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:32 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:32 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:32 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:32 [ INFO]                 DBManager:    26 - User have access to this page.
+2022-09-03 12:32 [ INFO]                 DBManager:    37 - #GET
+2022-09-03 12:32 [ INFO]                 DBManager:    13 - Profile page.
+2022-09-03 12:32 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:32 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:32 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:32 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:32 [ INFO]                 DBManager:    33 - User has access to page.
+2022-09-03 12:32 [ INFO]                 DBManager:    37 - #GET
+2022-09-03 12:32 [ INFO]                 DBManager:    13 - Transaction page.
+2022-09-03 12:32 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:32 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:32 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:32 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:32 [ INFO]                 DBManager:    33 - User has access to page.
+2022-09-03 12:32 [ INFO]                 DBManager:    60 - #POST
+2022-09-03 12:32 [ INFO]                 DBManager:    20 - User is trying to add product.
+2022-09-03 12:32 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:32 [ INFO]                 DBManager:    37 - Order was inserted in session.
+2022-09-03 12:32 [ INFO]                 DBManager:    47 - Success!
+2022-09-03 12:32 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:32 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:32 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:32 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:32 [ INFO]                 DBManager:    33 - User has access to page.
+2022-09-03 12:32 [ INFO]                 DBManager:    37 - #GET
+2022-09-03 12:32 [ INFO]                 DBManager:    13 - Transaction page.
+2022-09-03 12:32 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:32 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:32 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:32 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:32 [ INFO]                 DBManager:    33 - User has access to page.
+2022-09-03 12:32 [ INFO]                 DBManager:    60 - #POST
+2022-09-03 12:32 [ INFO]                 DBManager:    20 - User is trying to add product.
+2022-09-03 12:32 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:33 [ INFO]                 DBManager:    39 - Order was in session.
+2022-09-03 12:33 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:33 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:33 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:33 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:33 [ INFO]                 DBManager:    33 - User has access to page.
+2022-09-03 12:33 [ INFO]                 DBManager:    37 - #GET
+2022-09-03 12:33 [ INFO]                 DBManager:    13 - Transaction page.
+2022-09-03 12:33 [ INFO]                 DBManager:    25 - Request response encoder Filter object has been created
+2022-09-03 12:33 [ INFO]                 DBManager:    37 - DataSource was made.
+2022-09-03 12:33 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:33 [ INFO]                 DBManager:    14 - ServletContext attribute added::{access,true}
+2022-09-03 12:33 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:33 [ INFO]                 DBManager:    14 - ServletContext attribute added::{org.apache.jasper.runtime.JspApplicationContextImpl,org.apache.jasper.runtime.JspApplicationContextImpl@2cd60370}
+2022-09-03 12:33 [ INFO]                 DBManager:    14 - ServletContext attribute added::{org.apache.jasper.compiler.ELInterpreter,org.apache.jasper.compiler.ELInterpreterFactory$DefaultELInterpreter@7df7c3a1}
+2022-09-03 12:33 [ INFO]                 DBManager:    14 - ServletContext attribute added::{org.apache.jasper.compiler.StringInterpreter,org.apache.jasper.compiler.StringInterpreterFactory$DefaultStringInterpreter@f501e41}
+2022-09-03 12:33 [ INFO]                 DBManager:    13 - Session Created:: ID=0570EDCF74B3B9950EF8A28FE3C7C616
+2022-09-03 12:33 [ INFO]                 DBManager:    23 - Index page.
+2022-09-03 12:33 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:33 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:33 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:33 [ INFO]                 DBManager:    13 - Session Created:: ID=B26749F1D8C50D1B8501D109EAE45709
+2022-09-03 12:33 [ INFO]                 DBManager:    23 - Index page.
+2022-09-03 12:33 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:33 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:33 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:33 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:33 [ WARN]                 DBManager:    29 - User has access to page.
+2022-09-03 12:33 [ WARN]                 DBManager:    30 - UTF-8
+2022-09-03 12:33 [ INFO]                 DBManager:    37 - #GET
+2022-09-03 12:33 [ INFO]                 DBManager:    13 - Login page.
+2022-09-03 12:33 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:33 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:33 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:33 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:33 [ WARN]                 DBManager:    29 - User has access to page.
+2022-09-03 12:33 [ WARN]                 DBManager:    30 - UTF-8
+2022-09-03 12:33 [ INFO]                 DBManager:    60 - #POST
+2022-09-03 12:33 [ INFO]                 DBManager:    21 - User is trying to log in.
+2022-09-03 12:33 [ INFO]                 DBManager:    51 - Success.
+2022-09-03 12:33 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:33 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:33 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:33 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:33 [ INFO]                 DBManager:    26 - User have access to this page.
+2022-09-03 12:33 [ INFO]                 DBManager:    37 - #GET
+2022-09-03 12:33 [ INFO]                 DBManager:    13 - Profile page.
+2022-09-03 12:33 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:33 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:33 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:33 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:33 [ INFO]                 DBManager:    33 - User has access to page.
+2022-09-03 12:33 [ INFO]                 DBManager:    37 - #GET
+2022-09-03 12:33 [ INFO]                 DBManager:    13 - Transaction page.
+2022-09-03 12:34 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:34 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:34 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:34 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:34 [ INFO]                 DBManager:    33 - User has access to page.
+2022-09-03 12:34 [ INFO]                 DBManager:    60 - #POST
+2022-09-03 12:34 [ INFO]                 DBManager:    20 - User is trying to add product.
+2022-09-03 12:34 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:34 [ INFO]                 DBManager:    36 - Order was inserted in session.
+2022-09-03 12:34 [ INFO]                 DBManager:    46 - Success!
+2022-09-03 12:34 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:34 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:34 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:34 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:34 [ INFO]                 DBManager:    33 - User has access to page.
+2022-09-03 12:34 [ INFO]                 DBManager:    37 - #GET
+2022-09-03 12:34 [ INFO]                 DBManager:    13 - Transaction page.
+2022-09-03 12:34 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:34 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:34 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:34 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:34 [ INFO]                 DBManager:    33 - User has access to page.
+2022-09-03 12:34 [ INFO]                 DBManager:    60 - #POST
+2022-09-03 12:34 [ INFO]                 DBManager:    20 - User is trying to add product.
+2022-09-03 12:34 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:34 [ INFO]                 DBManager:    38 - Order was in session.
+2022-09-03 12:34 [ INFO]                 DBManager:    46 - Success!
+2022-09-03 12:34 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:34 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:34 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:34 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:34 [ INFO]                 DBManager:    33 - User has access to page.
+2022-09-03 12:34 [ INFO]                 DBManager:    37 - #GET
+2022-09-03 12:34 [ INFO]                 DBManager:    13 - Transaction page.
+2022-09-03 12:34 [ INFO]                 DBManager:    25 - Request response encoder Filter object has been created
+2022-09-03 12:34 [ INFO]                 DBManager:    37 - DataSource was made.
+2022-09-03 12:34 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:34 [ INFO]                 DBManager:    14 - ServletContext attribute added::{access,true}
+2022-09-03 12:34 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:34 [ INFO]                 DBManager:    14 - ServletContext attribute added::{org.apache.jasper.runtime.JspApplicationContextImpl,org.apache.jasper.runtime.JspApplicationContextImpl@3d66109a}
+2022-09-03 12:34 [ INFO]                 DBManager:    14 - ServletContext attribute added::{org.apache.jasper.compiler.ELInterpreter,org.apache.jasper.compiler.ELInterpreterFactory$DefaultELInterpreter@dba1c99}
+2022-09-03 12:34 [ INFO]                 DBManager:    14 - ServletContext attribute added::{org.apache.jasper.compiler.StringInterpreter,org.apache.jasper.compiler.StringInterpreterFactory$DefaultStringInterpreter@1b9b8ce9}
+2022-09-03 12:34 [ INFO]                 DBManager:    13 - Session Created:: ID=C68E9317C8152F329CE087AFABCF80C8
+2022-09-03 12:34 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:34 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:34 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:34 [ INFO]                 DBManager:    13 - Session Created:: ID=0E5BE69CC7B006ED29FEB4607DAC05C4
+2022-09-03 12:34 [ INFO]                 DBManager:    23 - Index page.
+2022-09-03 12:34 [ INFO]                 DBManager:    23 - Index page.
+2022-09-03 12:34 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:34 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:34 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:34 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:34 [ WARN]                 DBManager:    29 - User has access to page.
+2022-09-03 12:34 [ WARN]                 DBManager:    30 - UTF-8
+2022-09-03 12:34 [ INFO]                 DBManager:    37 - #GET
+2022-09-03 12:34 [ INFO]                 DBManager:    13 - Login page.
+2022-09-03 12:35 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:35 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:35 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:35 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:35 [ WARN]                 DBManager:    29 - User has access to page.
+2022-09-03 12:35 [ WARN]                 DBManager:    30 - UTF-8
+2022-09-03 12:35 [ INFO]                 DBManager:    60 - #POST
+2022-09-03 12:35 [ INFO]                 DBManager:    21 - User is trying to log in.
+2022-09-03 12:35 [ INFO]                 DBManager:    51 - Success.
+2022-09-03 12:35 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:35 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:35 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:35 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:35 [ INFO]                 DBManager:    26 - User have access to this page.
+2022-09-03 12:35 [ INFO]                 DBManager:    37 - #GET
+2022-09-03 12:35 [ INFO]                 DBManager:    13 - Profile page.
+2022-09-03 12:35 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:35 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:35 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:35 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:35 [ INFO]                 DBManager:    33 - User has access to page.
+2022-09-03 12:35 [ INFO]                 DBManager:    37 - #GET
+2022-09-03 12:35 [ INFO]                 DBManager:    13 - Transaction page.
+2022-09-03 12:35 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:35 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:35 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:35 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:35 [ INFO]                 DBManager:    33 - User has access to page.
+2022-09-03 12:35 [ INFO]                 DBManager:    60 - #POST
+2022-09-03 12:35 [ INFO]                 DBManager:    20 - User is trying to add product.
+2022-09-03 12:35 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:35 [ INFO]                 DBManager:    36 - Order was inserted in session.
+2022-09-03 12:35 [ INFO]                 DBManager:    46 - Success!
+2022-09-03 12:35 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:35 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:35 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:35 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:35 [ INFO]                 DBManager:    33 - User has access to page.
+2022-09-03 12:35 [ INFO]                 DBManager:    37 - #GET
+2022-09-03 12:35 [ INFO]                 DBManager:    13 - Transaction page.
+2022-09-03 12:35 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:35 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:35 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:35 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:35 [ INFO]                 DBManager:    33 - User has access to page.
+2022-09-03 12:35 [ INFO]                 DBManager:    60 - #POST
+2022-09-03 12:35 [ INFO]                 DBManager:    20 - User is trying to add product.
+2022-09-03 12:35 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:35 [ INFO]                 DBManager:    38 - Order was in session.
+2022-09-03 12:35 [ INFO]                 DBManager:    46 - Success!
+2022-09-03 12:35 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:35 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:35 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:35 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:35 [ INFO]                 DBManager:    33 - User has access to page.
+2022-09-03 12:35 [ INFO]                 DBManager:    37 - #GET
+2022-09-03 12:35 [ INFO]                 DBManager:    13 - Transaction page.
+2022-09-03 12:35 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:35 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:35 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:35 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:35 [ INFO]                 DBManager:    33 - User has access to page.
+2022-09-03 12:35 [ INFO]                 DBManager:    60 - #POST
+2022-09-03 12:35 [ INFO]                 DBManager:    19 - User is trying to close order.
+2022-09-03 12:35 [ INFO]                 DBManager:    23 - Adding order...
+2022-09-03 12:35 [ INFO]                 DBManager:   174 - Updating order...
+2022-09-03 12:35 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:35 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:35 [ INFO]                 DBManager:    79 - Finding employee...
+2022-09-03 12:35 [ INFO]                 DBManager:    28 - Success! Order 119was closed!
+2022-09-03 12:35 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:35 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:35 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:35 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:35 [ INFO]                 DBManager:    33 - User has access to page.
+2022-09-03 12:35 [ INFO]                 DBManager:    37 - #GET
+2022-09-03 12:35 [ INFO]                 DBManager:    13 - Transaction page.
+2022-09-03 12:35 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:35 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:35 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:35 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:35 [ INFO]                 DBManager:    34 - User have access to this page.
+2022-09-03 12:35 [ INFO]                 DBManager:    37 - #GET
+2022-09-03 12:35 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:35 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:35 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:35 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:35 [ INFO]                 DBManager:    25 - Orders page. Orders4pcs.
+2022-09-03 12:35 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:35 [ INFO]                 DBManager:    79 - Finding employee...
+2022-09-03 12:35 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:35 [ INFO]                 DBManager:    79 - Finding employee...
+2022-09-03 12:35 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:35 [ INFO]                 DBManager:    79 - Finding employee...
+2022-09-03 12:35 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:35 [ INFO]                 DBManager:    79 - Finding employee...
+2022-09-03 12:35 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:35 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:35 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:35 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:35 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:35 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:35 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:35 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:35 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:35 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:35 [ INFO]                 DBManager:    34 - User have access to this page.
+2022-09-03 12:35 [ INFO]                 DBManager:    37 - #GET
+2022-09-03 12:35 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:35 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:35 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:35 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:35 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:35 [ INFO]                 DBManager:    25 - Orders page. Orders4pcs.
+2022-09-03 12:35 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:35 [ INFO]                 DBManager:    79 - Finding employee...
+2022-09-03 12:35 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:35 [ INFO]                 DBManager:    79 - Finding employee...
+2022-09-03 12:35 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:35 [ INFO]                 DBManager:    79 - Finding employee...
+2022-09-03 12:35 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:35 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:35 [ INFO]                 DBManager:    79 - Finding employee...
+2022-09-03 12:35 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:35 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:35 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:35 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:35 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:35 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:35 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:35 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:35 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:35 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:35 [ INFO]                 DBManager:    34 - User have access to this page.
+2022-09-03 12:35 [ INFO]                 DBManager:    37 - #GET
+2022-09-03 12:35 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:35 [ INFO]                 DBManager:    83 - Finding item...
+2022-09-03 12:35 [ INFO]                 DBManager:    19 - Order page.
+2022-09-03 12:38 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:38 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:38 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:38 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:38 [ INFO]                 DBManager:    26 - User have access to this page.
+2022-09-03 12:38 [ INFO]                 DBManager:    37 - #GET
+2022-09-03 12:38 [ INFO]                 DBManager:    13 - Profile page.
+2022-09-03 12:38 [ INFO]                 DBManager:    35 - Checking access...
+2022-09-03 12:38 [ INFO]                 DBManager:    24 - ServletContext attribute replaced::{access,true}
+2022-09-03 12:38 [ INFO]                 DBManager:    48 - Access true
+2022-09-03 12:38 [ INFO]                 DBManager:    28 - #DoFilter
+2022-09-03 12:38 [ WARN]                 DBManager:    26 - Usercashier@cashier.comhas logged out.
+2022-09-03 12:38 [ INFO]                 DBManager:    37 - #GET
+2022-09-03 12:38 [ INFO]                 DBManager:    14 - 0E5BE69CC7B006ED29FEB4607DAC05C4session was removed!
+2022-09-03 12:38 [ INFO]                 DBManager:    20 - Session Destroyed:: ID=0E5BE69CC7B006ED29FEB4607DAC05C4
+2022-09-03 12:38 [ INFO]                 DBManager:    13 - Session Created:: ID=BC6E8DA1EAD70601251DA247170B26F6
+2022-09-03 13:05 [ INFO]                 DBManager:    20 - Session Destroyed:: ID=C68E9317C8152F329CE087AFABCF80C8
+2022-09-03 13:09 [ INFO]                 DBManager:    20 - Session Destroyed:: ID=BC6E8DA1EAD70601251DA247170B26F6

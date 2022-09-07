@@ -55,7 +55,8 @@ public class LoginCommand implements ICommand {
                     return loginPath;
                 }
             } catch (Exception e) {
-                throw new RuntimeException("An error occurred");
+                e.printStackTrace();
+                throw new RuntimeException();
             }
         }
         }

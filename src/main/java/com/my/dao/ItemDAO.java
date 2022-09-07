@@ -17,7 +17,14 @@ import static com.my.db.DBManager.LOGGER;
 
 
 public class ItemDAO implements IDAO<Item> {
-private static DBManager manager = DBManager.getInstance();
+private static DBManager manager;
+
+    public ItemDAO() {
+        manager = DBManager.getInstance();
+    }
+    public ItemDAO(boolean test) {
+        manager = DBManager.getTestInstance();
+    }
 
     public void add(@NotNull Item item) {
         LOGGER.info("Adding item..");
@@ -47,7 +54,17 @@ private static DBManager manager = DBManager.getInstance();
     }
     @Override
     public List getList() {
-        return null;
+        List<Item> items = new ArrayList<>();
+
+        try {
+            ResultSet rs = manager.getRSFromSql("SELECT * FROM items");
+            while (rs.next()) {
+                items.add(extract(rs));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return items;
     }
 
     public  List getList(int offset){

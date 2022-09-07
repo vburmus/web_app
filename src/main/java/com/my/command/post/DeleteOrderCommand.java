@@ -20,7 +20,7 @@ public class DeleteOrderCommand implements ICommand {
         if(order!=null) {
             orderDAO.deleteOrder(order);
             LOGGER.info("Success.");
-            return req.getContextPath() + "/controller?command=ORDERS_PAGE";
+            return req.getContextPath() + "/controller?command=ORDERS_PAGE&page=1";
         }else{
             try {
                 res.sendError(HttpServletResponse.SC_NOT_FOUND);

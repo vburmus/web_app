@@ -39,8 +39,7 @@ public class AddProductCommand implements ICommand {
             }
 
             if(order!=null) {
-                item.setQuantity(item.getQuantity() - quantity);
-                itemDao.updateItemQuantity(item);
+
                 order.addTransaction(new Transaction(item, quantity, order));
                 req.getSession().removeAttribute(errorMessage);
                 LOGGER.info("Success!");

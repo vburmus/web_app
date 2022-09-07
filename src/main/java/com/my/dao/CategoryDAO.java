@@ -15,15 +15,24 @@ import static com.my.db.Constants.*;
 import static com.my.db.DBManager.LOGGER;
 
 public class CategoryDAO implements IDAO<Category>{
-    private DBManager manager = DBManager.getInstance();
+    private DBManager manager;
+    public CategoryDAO() {
+        manager = DBManager.getInstance();
+    }
+    public CategoryDAO(boolean test) {
+        manager = DBManager.getTestInstance();
+    }
 
     public void add(@NotNull Category category){
         LOGGER.info("Adding category..");
         try(Connection con = manager.getConnection();
-            PreparedStatement ps = con.prepareStatement(SQL_ADD_CATEGORY)) {
+            PreparedStatement ps = con.prepareStatement(SQL_ADD_CATEGORY,PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1,category.getName());
             ps.setString(2, category.getTitle());
             ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if(rs.next())
+                category.setId(rs.getInt(1));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

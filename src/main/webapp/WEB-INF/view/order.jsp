@@ -29,6 +29,7 @@
         <hr>
         <div class="mt-1 text-center">
             <h3><fmt:message key="order_items"/>:</h3>
+            <tf:error message="${errorMessage}"/>
             <c:forEach items="${order.transactions}" var="transaction">
             <div class="card mb-3">
                 <div class="card-body">
@@ -48,7 +49,7 @@
                             <input type="hidden" name="transactionId" value="${transaction.id}">
 
                             <input class="quantityInput" class="col-2"  name="changedQuantity" type="number" min="1" placeholder="${transaction.quantity}pcs"/>
-                            <tf:error message="${errorMessage}"/>
+
                             <button class="quantitySubmit" type="submit" disabled  class="btn-light"> <fmt:message key="submitButton"/></button>
 
 

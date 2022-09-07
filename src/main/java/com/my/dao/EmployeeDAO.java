@@ -17,8 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeDAO implements IDAO<Employee> {
-    private static DBManager manager = DBManager.getInstance();
+    private static DBManager manager;
 
+    public EmployeeDAO() {
+        manager = DBManager.getInstance();
+    }
+    public EmployeeDAO(boolean test) {
+        manager = DBManager.getTestInstance();
+    }
 
     public void add(@NotNull Employee employee)  {
         LOGGER.info("registration employee...");
@@ -27,7 +33,7 @@ public class EmployeeDAO implements IDAO<Employee> {
 
 
         try(Connection con = manager.getConnection();
-            PreparedStatement preparedStatement = con.prepareStatement(SQL_INSERT_USERS);){
+            PreparedStatement preparedStatement = con.prepareStatement(SQL_INSERT_USERS,PreparedStatement.RETURN_GENERATED_KEYS);){
                 int k = 1;
                 preparedStatement.setString(k++, employee.getName());
                 preparedStatement.setString(k++, employee.getSurname());
@@ -36,8 +42,11 @@ public class EmployeeDAO implements IDAO<Employee> {
                 preparedStatement.setString(k++, employee.getPassword());
                 preparedStatement.setString(k++, employee.getProfile());
                 preparedStatement.setString(k++, employee.getImageName());
+            preparedStatement.setInt(k++, 0);
                 result = preparedStatement.executeUpdate();
-
+                ResultSet rs = preparedStatement.getGeneratedKeys();
+                if(rs.next())
+                    employee.setId(rs.getInt(1));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

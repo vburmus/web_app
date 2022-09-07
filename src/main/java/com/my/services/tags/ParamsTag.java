@@ -24,10 +24,13 @@ public class ParamsTag extends TagSupport {
         JspWriter out = pageContext.getOut();
         try {
             String button;
+            String delete;
             if(location.equals("ua")){
                 button = "Переглянути";
+                delete = "Видалити";
             }else{
                 button = "Check";
+                delete = "Delete";
             }
            out.print("<div class=\"card-body\">" +
                    " <h4 class=\"card-title\">№:" + order.getId() +"</h4> " +
@@ -45,7 +48,7 @@ public class ParamsTag extends TagSupport {
                        out.print("<form method=\"post\" action=\"controller\"> " +
                                 "<input type=\"hidden\" name=\"orderId\" value=\""+ order.getId()+"\"> " +
                                 "<input type=\"hidden\" name=\"command\" value=\"DELETE_ORDER\"/> " +
-                                "<button type=\"submit\" class=\"btn-light align-bottom\"><fmt:message key=\"delete_order\" /></button> </form> ");
+                                "<button type=\"submit\" class=\"btn-light align-bottom\">"+delete+"</button> </form> ");
 
                     }
                     out.print(

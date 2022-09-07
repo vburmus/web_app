@@ -2,8 +2,8 @@ package com.my.db;
 
 public class Constants {
     public static final String SQL_INSERT_USERS =
-            "INSERT INTO users  ( id, name, surname, email, mobile, password, profile,img) " +
-                    "VALUES  ( default, ?, ?, ?, ?, ?, ?,?);";
+            "INSERT INTO users  ( id, name, surname, email, mobile, password, profile,img,role) " +
+                    "VALUES  ( default, ?, ?, ?, ?, ?, ?,?,?);";
 
     public static final String SQL_SELECT_ROLES =
             "SELECT * FROM roles ORDER BY ID";
@@ -59,7 +59,7 @@ public class Constants {
     public static final String SQL_ADD_CATEGORY =
             "INSERT INTO category (name,title) VALUES (?,?)";
     public static final String SQL_ADD_CATEGORY_ITEM =
-            "INSERT INTO category_has_items (category,item) VALUES (?,?)";
+            "INSERT INTO category_has_items (category_id,items_id) VALUES (?,?)";
     public static final String SQL_CATEGORIES =
             "SELECT *  FROM category_has_items";
     public static final String SQL_SELECT_CATEGORIES =

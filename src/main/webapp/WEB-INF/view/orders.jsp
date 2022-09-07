@@ -33,11 +33,13 @@
 <mtl:order userId="${user.id}" orderId="${order.getId()}" location="${locale}" />
 
     <div class="card mb-3">
+        <div class="row">
         <c:forEach items="${order.getTransactions()}" var="transaction">
             <div class="col-2">
                 <img src="${pageContext.request.contextPath}/assets/img/items/${transaction.getItem().getPhoto()}" class="orderImg" alt="..."/>
             </div>
         </c:forEach>
+        </div>
             </div>
         <div class="card-footer">
         <p class="card-text"><small class="text-muted"><fmt:message key="orders_created"/>:${order.getDate()}</small></p>

@@ -1,0 +1,38 @@
+2022-09-04 18:49 [ INFO]                 DBManager:    25 - Adding category..
+2022-09-04 18:50 [ INFO]                 DBManager:    25 - Adding category..
+2022-09-04 18:53 [ INFO]                 DBManager:    25 - Adding category..
+2022-09-04 19:00 [ INFO]                 DBManager:    25 - Adding category..
+2022-09-04 19:00 [ INFO]                 DBManager:    53 - DataSource was made.
+2022-09-04 19:01 [ INFO]                 DBManager:    25 - Adding category..
+2022-09-04 19:22 [ INFO]                 DBManager:    53 - DataSource was made.
+2022-09-04 19:24 [ INFO]                 DBManager:    53 - DataSource was made.
+2022-09-04 19:24 [ INFO]                 DBManager:    53 - DataSource was made.
+2022-09-04 19:33 [ INFO]                 DBManager:    53 - DataSource was made.
+2022-09-04 19:33 [ INFO]                 DBManager:    29 - Adding category..
+2022-09-04 20:08 [ INFO]                 DBManager:    53 - DataSource was made.
+2022-09-04 20:08 [ INFO]                 DBManager:    29 - Adding category..
+2022-09-04 20:09 [ INFO]                 DBManager:    53 - DataSource was made.
+2022-09-04 20:09 [ INFO]                 DBManager:    29 - Adding category..
+2022-09-04 20:10 [ INFO]                 DBManager:    53 - DataSource was made.
+2022-09-04 20:11 [ INFO]                 DBManager:    29 - Adding category..
+2022-09-04 20:11 [ INFO]                 DBManager:    53 - DataSource was made.
+2022-09-04 20:11 [ INFO]                 DBManager:    29 - Adding category..
+2022-09-04 20:12 [ INFO]                 DBManager:    53 - DataSource was made.
+2022-09-04 20:12 [ INFO]                 DBManager:    29 - Adding category..
+2022-09-04 20:12 [ INFO]                 DBManager:    54 - DataSource was made.
+2022-09-04 20:12 [ INFO]                 DBManager:    29 - Adding category..
+2022-09-04 20:14 [ INFO]                 DBManager:    54 - DataSource was made.
+2022-09-04 20:14 [ INFO]                 DBManager:    29 - Adding category..
+2022-09-04 20:14 [ INFO]                 DBManager:    54 - DataSource was made.
+2022-09-04 20:14 [ INFO]                 DBManager:    30 - Adding category..
+2022-09-04 20:15 [ INFO]                 DBManager:    54 - DataSource was made.
+2022-09-04 20:15 [ INFO]                 DBManager:    30 - Adding category..
+2022-09-04 20:15 [ INFO]                 DBManager:    54 - DataSource was made.
+2022-09-04 20:15 [ INFO]                 DBManager:    30 - Adding category..
+2022-09-04 20:17 [ INFO]                 DBManager:    54 - DataSource was made.
+2022-09-04 20:17 [ INFO]                 DBManager:    30 - Adding category..
+2022-09-04 20:18 [ INFO]                 DBManager:    54 - DataSource was made.
+2022-09-04 20:21 [ INFO]                 DBManager:    54 - DataSource was made.
+2022-09-04 20:21 [ INFO]                 DBManager:    30 - Adding category..
+2022-09-04 20:27 [ INFO]                 DBManager:    49 - DataSource was made.
+2022-09-04 20:27 [ INFO]                 DBManager:    28 - Adding category..

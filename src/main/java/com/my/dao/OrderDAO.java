@@ -17,8 +17,17 @@ import static com.my.db.Constants.*;
 import static com.my.db.DBManager.LOGGER;
 
 public class OrderDAO implements IDAO<Order>{
-    private static DBManager manager = DBManager.getInstance();
-    private ItemDAO itemDao = new ItemDAO();
+    private static DBManager manager;
+    private ItemDAO itemDao;
+
+    public OrderDAO() {
+        manager = DBManager.getInstance();
+        itemDao = new ItemDAO();
+    }
+    public OrderDAO(boolean test) {
+        manager = DBManager.getTestInstance();
+        itemDao = new ItemDAO(true);
+    }
     public void add(@NotNull Order order){
         LOGGER.info("Adding order...");
 
@@ -89,7 +98,7 @@ public class OrderDAO implements IDAO<Order>{
     }
 
     public  Order find(String id){
-        Order order = new Order();
+        Order order = null;
         try(Connection con = manager.getConnection();
         PreparedStatement ps = con.prepareStatement(SQL_SELECT_ORDER)){
             ps.setString(1,id);
@@ -203,18 +212,15 @@ public class OrderDAO implements IDAO<Order>{
 
         Connection con = null;
         try{
+
             con = manager.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL_DELETE_ORDER);
-            con.setAutoCommit(false);
+
             ps.setInt(1,order.getId());
             ps.executeUpdate();
-            con.commit();
+
         } catch (SQLException e) {
-            try {
-                con.rollback();
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
+          e.printStackTrace();
         }finally {
             manager.close(con);
         }

@@ -14,10 +14,19 @@ import java.sql.SQLException;
 import static com.my.db.Constants.*;
 
 public class TransactionDAO implements IDAO<Transaction> {
-    private static DBManager manager = DBManager.getInstance();
-    private OrderDAO orderDAO = new OrderDAO();
-    private ItemDAO itemDao = new ItemDAO();
-
+    private static DBManager manager;
+    private OrderDAO orderDAO;
+    private ItemDAO itemDao;
+    public TransactionDAO(){
+        manager = DBManager.getInstance();
+        orderDAO = new OrderDAO();
+        itemDao = new ItemDAO();
+    }
+    public TransactionDAO(boolean test){
+        manager = DBManager.getTestInstance();
+        orderDAO = new OrderDAO(true);
+        itemDao = new ItemDAO(true);
+    }
     public void add(@NotNull Transaction transaction) {
         int res = 0;
         Connection con = null;
@@ -36,7 +45,9 @@ public class TransactionDAO implements IDAO<Transaction> {
             if (rs.next())
                 transaction.setId(rs.getInt(1));
             con.commit();
-
+            Item item = transaction.getItem();
+            item.setQuantity(item.getQuantity() - transaction.getQuantity());
+            itemDao.updateItemQuantity(transaction.getItem());
         } catch (SQLException e) {
             e.printStackTrace();
             try {

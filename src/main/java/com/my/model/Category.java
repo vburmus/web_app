@@ -10,6 +10,12 @@ public class Category {
      */
     public Category() {
     }
+
+    public Category(String name, String title) {
+        this.name = name;
+        this.title = title;
+    }
+
     public int getId() {
         return id;
     }

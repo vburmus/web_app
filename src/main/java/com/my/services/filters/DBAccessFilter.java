@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 
 import static com.my.db.DBManager.LOGGER;
 
@@ -33,7 +34,7 @@ public class DBAccessFilter implements Filter {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             LOGGER.info("Checking access...");
-            con = dbManager.getConnection();
+              con = dbManager.getConnection();
             ctx = req.getServletContext();
             if(con!=null)
                 access=true;

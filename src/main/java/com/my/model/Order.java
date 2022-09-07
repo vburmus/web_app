@@ -12,7 +12,7 @@ public class Order {
     private LocalDateTime date;
     private int users_id;
     private float summary;
-    private TransactionDAO transactionDAO = new TransactionDAO();
+    private TransactionDAO transactionDAO ;
 
 
     /**
@@ -25,13 +25,22 @@ public class Order {
         this.date = LocalDateTime.now();
         this.users_id = users_id;
         this.summary = 0;
+        transactionDAO  = new TransactionDAO();
     }
 
     /**
      * Empty constructor for order
      *
      */
-    public Order(){
+   public Order(){
+
+   }
+    public Order(boolean test){
+        this.transactions = new ArrayList<>();
+        this.date = LocalDateTime.now();
+        this.users_id = users_id;
+        this.summary = 0;
+        transactionDAO = new TransactionDAO(true);
     }
     /**
      * This method adds transaction in order
