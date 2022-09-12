@@ -1,8 +1,10 @@
 package com.my.command.get;
 
 import com.my.command.ICommand;
+import com.my.dao.CategoryDAO;
 import com.my.dao.OrderDAO;
 import com.my.model.Order;
+import com.my.services.exception.MyException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +16,7 @@ public class OrdersPageCommand implements ICommand {
     OrderDAO orderDAO = new OrderDAO();
     int offset = 4;
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res) {
+    public String execute(HttpServletRequest req, HttpServletResponse res) throws MyException {
         int page = Integer.parseInt(req.getParameter("page"));
         double pages= orderDAO.getCountOfItems();
         pages/=offset;
@@ -22,6 +24,7 @@ public class OrdersPageCommand implements ICommand {
         req.setAttribute("pages",pages );
         List<Order> orders = orderDAO.getList(offset*(page-1));
         req.setAttribute("orders", orders);
+
         LOGGER.info("Orders page. Orders" + orders.size() + "pcs.");
         return "orders";
     }

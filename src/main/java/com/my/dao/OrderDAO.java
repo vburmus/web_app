@@ -4,6 +4,7 @@ import com.my.db.DBManager;
 import com.my.model.Item;
 import com.my.model.Order;
 import com.my.model.Transaction;
+import com.my.services.exception.MyException;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
@@ -28,7 +29,7 @@ public class OrderDAO implements IDAO<Order>{
         manager = DBManager.getTestInstance();
         itemDao = new ItemDAO(true);
     }
-    public void add(@NotNull Order order){
+    public void add(@NotNull Order order) throws MyException {
         LOGGER.info("Adding order...");
 
         int res = 0;
@@ -53,11 +54,11 @@ public class OrderDAO implements IDAO<Order>{
             updateOrder(order);
 
               } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new MyException();
         }
     }
 
-    public  List getList(){
+    public  List getList() throws MyException {
         List<Order> orders = new ArrayList<>();
 
         try {
@@ -66,11 +67,11 @@ public class OrderDAO implements IDAO<Order>{
                 orders.add(extract(rs));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new MyException();
         }
         return orders;
     }
-    public int getCountOfItems(){
+    public int getCountOfItems() throws MyException {
 
         int count = 0;
         try(Connection con = manager.getConnection()){
@@ -79,11 +80,11 @@ public class OrderDAO implements IDAO<Order>{
                 count = rs.getInt(1);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new MyException();
         }
         return count;
     }
-    public  Order extract(@NotNull ResultSet rs) {
+    public  Order extract(@NotNull ResultSet rs) throws MyException {
         Order order = new Order();
         try {
            order.setId(rs.getInt("id"));
@@ -93,12 +94,12 @@ public class OrderDAO implements IDAO<Order>{
            order.setIsReady(rs.getInt("isReady"));
            order.setTransactions(extractOrderTransactions(order.getId()));
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new MyException();
         }
         return order;
     }
 
-    public  Order find(String id){
+    public  Order find(String id) throws MyException {
         Order order = null;
         try(Connection con = manager.getConnection();
         PreparedStatement ps = con.prepareStatement(SQL_SELECT_ORDER)){
@@ -108,12 +109,12 @@ public class OrderDAO implements IDAO<Order>{
                 order = extract(rs);
             }
         }catch (SQLException e){
-            e.printStackTrace();
+            throw new MyException();
         }
         return order;
     }
 
-    public List getList(int offset) {
+    public List getList(int offset) throws MyException {
         List<Order> orders = new ArrayList<>();
 
         try {
@@ -122,7 +123,7 @@ public class OrderDAO implements IDAO<Order>{
                 orders.add(extract(rs));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new MyException();
         }
         return orders;
     }
@@ -133,7 +134,7 @@ public class OrderDAO implements IDAO<Order>{
      * @param orderId
      * @return Transaction object
      */
-    private @NotNull Transaction extractTransactionFromOrdersList(int transactionId, int orderId) {
+    private @NotNull Transaction extractTransactionFromOrdersList(int transactionId, int orderId) throws MyException {
         Transaction transaction = new Transaction();
         try(Connection con = manager.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL_EXECUTE_TRANSACTION)){
@@ -146,7 +147,7 @@ public class OrderDAO implements IDAO<Order>{
                 transaction.setQuantity(rs.getInt("quantity"));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new MyException();
         }
         return transaction;
     }
@@ -156,7 +157,7 @@ public class OrderDAO implements IDAO<Order>{
      * @param orderId
      * @return List of transactions
      */
-    public ArrayList<Transaction> extractOrderTransactions(int orderId) {
+    public ArrayList<Transaction> extractOrderTransactions(int orderId) throws MyException {
         ArrayList<Transaction> transactions = new ArrayList<>();
         try(Connection con = manager.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL_SELECT_ORDER_TRANSACTIONS)) {
@@ -168,7 +169,7 @@ public class OrderDAO implements IDAO<Order>{
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new MyException();
         }
 
 
@@ -180,7 +181,7 @@ public class OrderDAO implements IDAO<Order>{
      * This method updates an order
      * @param order
      */
-    public void updateOrder(@NotNull Order order){
+    public void updateOrder(@NotNull Order order) throws MyException {
         LOGGER.info("Updating order...");
         try(Connection con = manager.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL_UPDATE_ORDER, PreparedStatement.RETURN_GENERATED_KEYS);){
@@ -200,7 +201,7 @@ public class OrderDAO implements IDAO<Order>{
                 order.setSummary(rs.getFloat(4));
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new MyException();
         }
 
     }
@@ -209,7 +210,7 @@ public class OrderDAO implements IDAO<Order>{
      * This method deletes an order
      * @param order
      */
-    public void deleteOrder(@NotNull Order order){
+    public void deleteOrder(@NotNull Order order) throws MyException {
 
         Connection con = null;
         try{
@@ -221,7 +222,7 @@ public class OrderDAO implements IDAO<Order>{
             ps.executeUpdate();
 
         } catch (SQLException e) {
-          e.printStackTrace();
+            throw new MyException();
         }finally {
             manager.close(con);
         }
@@ -231,7 +232,7 @@ public class OrderDAO implements IDAO<Order>{
             itemDao.updateItemQuantity(item);
         }
     }
-    public void readyOrder(@NotNull Order order){
+    public void readyOrder(@NotNull Order order) throws MyException {
 
         Connection con = null;
         try{
@@ -243,7 +244,7 @@ public class OrderDAO implements IDAO<Order>{
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new MyException();
         }finally {
             manager.close(con);
         }

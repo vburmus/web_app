@@ -1,6 +1,7 @@
 package com.my.model;
 
 import com.my.dao.TransactionDAO;
+import com.my.services.exception.MyException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -49,7 +50,7 @@ public class Order {
      * This method adds transaction in order
      * @param nr
      */
-    public void addTransaction(Transaction nr){
+    public void addTransaction(Transaction nr) throws MyException {
        Transaction transaction = transactions.stream()
                 .filter(x -> x.getItem().getName().equals(nr.getItem().getName()))
                 .findAny().orElse(null);

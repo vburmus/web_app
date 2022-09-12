@@ -5,6 +5,7 @@ import com.my.dao.EmployeeDAO;
 import com.my.dao.OrderDAO;
 import com.my.model.Employee;
 import com.my.model.Order;
+import com.my.services.exception.MyException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,9 +18,10 @@ public class ZReportCommand implements ICommand {
     OrderDAO orderDAO = new OrderDAO();
     EmployeeDAO employeeDao = new EmployeeDAO();
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res) {
+    public String execute(HttpServletRequest req, HttpServletResponse res) throws MyException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
         DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        if(req.getParameter("selectedDay")!=""){
         LocalDate date = LocalDate.parse(req.getParameter("selectedDay").replace("-","."),formatter);
         List<Order> orders  = orderDAO.getList();
 
@@ -43,11 +45,20 @@ public class ZReportCommand implements ICommand {
         summary = (dayOrders.stream().map(x -> x.getSummary())
                 .reduce((float) 0,  Float::sum));
 
-        req.getSession().setAttribute("summary" , summary);
-        req.getSession().setAttribute("orders" , orders);
-        req.getSession().setAttribute("biggestOrder" , maxOrder);
-        req.getSession().setAttribute("maxEmployee" , maxEmp);
-        req.getSession().setAttribute("date", date);
+        if(dayOrders.size()==0) {
+            req.getSession().setAttribute("errorMessage", "No orders found!");
+            req.getSession().setAttribute("errorPage", "report");
+        }else {
+            req.getSession().setAttribute("summary", summary);
+            req.getSession().setAttribute("orders", dayOrders);
+            req.getSession().setAttribute("biggestOrder", maxOrder);
+            req.getSession().setAttribute("maxEmployee", maxEmp);
+        }
+            req.getSession().setAttribute("date", date);
+        }else{
+            req.getSession().setAttribute("errorMessage", "Wrong date!");
+            req.getSession().setAttribute("errorPage", "report");
+        }
         return  req.getContextPath() + "/controller?command=REPORT_PAGE";
     }
 }

@@ -2,6 +2,7 @@ package com.my.dao;
 
 import com.my.db.DBManager;
 import com.my.model.Employee;
+import com.my.services.exception.MyException;
 import org.jetbrains.annotations.NotNull;
 
 import static com.my.db.Constants.*;
@@ -26,7 +27,7 @@ public class EmployeeDAO implements IDAO<Employee> {
         manager = DBManager.getTestInstance();
     }
 
-    public void add(@NotNull Employee employee)  {
+    public void add(@NotNull Employee employee) throws MyException {
         LOGGER.info("registration employee...");
                int result = 0;
 
@@ -48,11 +49,11 @@ public class EmployeeDAO implements IDAO<Employee> {
                 if(rs.next())
                     employee.setId(rs.getInt(1));
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new MyException();
         }
     }
 
-    public List<String> getList(){
+    public List<String> getList() throws MyException {
         LOGGER.info("Getting roles...");
         List<String> roles = new ArrayList<>();
         try {
@@ -61,12 +62,12 @@ public class EmployeeDAO implements IDAO<Employee> {
                 roles.add(rs.getString("name"));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new MyException();
         }
         return roles;
     }
 
-    public Employee extract(@NotNull ResultSet rs) {
+    public Employee extract(@NotNull ResultSet rs) throws MyException {
         Employee employee = new Employee();
         try {
             employee.setId(rs.getInt(USER_ID));
@@ -79,12 +80,12 @@ public class EmployeeDAO implements IDAO<Employee> {
             employee.setImageName(rs.getString(USER_IMG));
             employee.setOrders(rs.getInt("orders"));
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new MyException();
         }
         return employee;
     }
 
-    public  Employee find(String employee){
+    public  Employee find(String employee) throws MyException {
         LOGGER.info("Finding employee...");
 
         try(Connection con = manager.getConnection()){
@@ -104,7 +105,7 @@ public class EmployeeDAO implements IDAO<Employee> {
             }
             return extractedEmployee;
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new MyException();
         }
 
     }
@@ -113,7 +114,7 @@ public class EmployeeDAO implements IDAO<Employee> {
      * @params offset - start point in SQL limit.
      *
      */
-    public Employee getEmployee( int offset){
+    public Employee getEmployee( int offset) throws MyException {
         LOGGER.info("Getting employee...");
         Employee employee = new Employee();
 
@@ -123,7 +124,7 @@ public class EmployeeDAO implements IDAO<Employee> {
                 employee = extract(rs);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new MyException();
         }
         return employee;
     }

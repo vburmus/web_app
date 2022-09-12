@@ -4,6 +4,7 @@ import com.my.db.DBManager;
 import com.my.db.Fields;
 import com.my.model.Category;
 import com.my.model.Item;
+import com.my.services.exception.MyException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,7 +30,7 @@ CategoryDAO categoryDAO = new CategoryDAO(true);
         dbManager.clearTable("users");
     }
     @Test
-    void addAndFindProduct() {
+    void addAndFindProduct() throws MyException {
         Item item = new Item();
         item.setName("asdf");
         item.setQuantity(34);
@@ -47,7 +48,7 @@ CategoryDAO categoryDAO = new CategoryDAO(true);
     }
 
     @Test
-    void getList() {
+    void getList() throws MyException {
         ArrayList<Item> items = new ArrayList<>();
         Category category = new Category("3","3");
         categoryDAO.add(category);

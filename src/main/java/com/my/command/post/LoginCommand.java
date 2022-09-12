@@ -5,6 +5,7 @@ import com.my.db.DBManager;
 import com.my.dao.EmployeeDAO;
 import com.my.model.Employee;
 import com.my.model.password.Validation;
+import com.my.services.exception.MyException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,15 +18,18 @@ import static com.my.db.DBManager.LOGGER;
 public class LoginCommand implements ICommand {
     EmployeeDAO employeeDao = new EmployeeDAO();
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws MyException {
         LOGGER.info("User is trying to log in.");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String errorMessage = "errorMessage";
         String profilePath = request.getContextPath() + "/controller?command=PROFILE_PAGE";
         String loginPath = request.getContextPath() + "/controller?command=LOGIN_PAGE";
+        request.getSession().setAttribute("errorPage", "login");
         if(email.equals("")||password.equals("")){
             request.getSession().setAttribute(errorMessage, "Your email or password is null!");
+
+
             return loginPath;
         }else {
             HttpSession hs = request.getSession();
@@ -56,7 +60,7 @@ public class LoginCommand implements ICommand {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                throw new RuntimeException();
+                throw new MyException();
             }
         }
         }

@@ -1,5 +1,7 @@
 package com.my.dao;
 
+import com.my.services.exception.MyException;
+
 import javax.naming.OperationNotSupportedException;
 import java.sql.ResultSet;
 import java.util.List;
@@ -10,12 +12,12 @@ public interface IDAO<T> {
      * @params T t - generic type object, which you want to add in  table
      *
      */
-    void add(T t);
+    void add(T t) throws MyException;
     /**
      * Method getList() is used to return a list of Objects from table.
      * @return List of objects
      */
-    default List getList() {
+    default List getList() throws MyException {
         try {
             throw new OperationNotSupportedException();
         } catch (OperationNotSupportedException e) {
@@ -28,7 +30,7 @@ public interface IDAO<T> {
      * @return List of objects
      *
      */
-    default List getList(int offset) {
+    default List getList(int offset) throws MyException {
         try {
             throw new OperationNotSupportedException();
         } catch (OperationNotSupportedException e) {
@@ -40,11 +42,11 @@ public interface IDAO<T> {
      * @params rs - ResultSet,from which we want to extract a generic type object
      *@return T object
      */
-    T extract(ResultSet rs);
+    T extract(ResultSet rs) throws MyException;
     /**
      * Method find() is used to find an object in tables.
      * @params name - String,which contains id or name, which is unique in table.
      *@return T object
      */
-    T find(String name);
+    T find(String name) throws MyException;
 }

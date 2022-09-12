@@ -4,6 +4,7 @@ import com.my.command.ICommand;
 import com.my.db.Constants;
 import com.my.db.DBManager;
 import com.my.dao.EmployeeDAO;
+import com.my.services.exception.MyException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +18,9 @@ import static com.my.db.DBManager.LOGGER;
 public class UpdateRolesCommand implements ICommand {
 EmployeeDAO employeeDao = new EmployeeDAO();
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse resp) {
+    public String execute(HttpServletRequest req, HttpServletResponse resp) throws MyException {
+        req.getSession().setAttribute("errorPage", "employees");
+
         LOGGER.info("User is trying to update roles");
         String role = req.getParameter("selectRole");
         String email = req.getParameter("email");
@@ -32,7 +35,7 @@ EmployeeDAO employeeDao = new EmployeeDAO();
 
             LOGGER.info("Success.");
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new MyException();
         }
         return  req.getContextPath() + "/controller?command=EMPLOYEES_PAGE&page=" + req.getParameter("page");
     }

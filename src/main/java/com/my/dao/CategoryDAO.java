@@ -2,6 +2,7 @@ package com.my.dao;
 
 import com.my.db.DBManager;
 import com.my.model.Category;
+import com.my.services.exception.MyException;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
@@ -23,7 +24,7 @@ public class CategoryDAO implements IDAO<Category>{
         manager = DBManager.getTestInstance();
     }
 
-    public void add(@NotNull Category category){
+    public void add(@NotNull Category category) throws MyException {
         LOGGER.info("Adding category..");
         try(Connection con = manager.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL_ADD_CATEGORY,PreparedStatement.RETURN_GENERATED_KEYS)) {
@@ -34,11 +35,11 @@ public class CategoryDAO implements IDAO<Category>{
             if(rs.next())
                 category.setId(rs.getInt(1));
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new MyException();
         }
     }
 
-    public List<Category> getList() {
+    public List<Category> getList() throws MyException {
         LOGGER.info("Getting categories...");
         List<Category> categories = new ArrayList<>();
         ResultSet rs = null;
@@ -47,8 +48,8 @@ public class CategoryDAO implements IDAO<Category>{
             while (rs.next()) {
                 categories.add(extract(rs));
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (SQLException | MyException e) {
+            throw new MyException();
         }
         return categories;
     }
@@ -57,19 +58,19 @@ public class CategoryDAO implements IDAO<Category>{
         return null;
     }
 
-    public  Category extract(@NotNull ResultSet rs) {
+    public  Category extract(@NotNull ResultSet rs) throws MyException {
         Category category = new Category();
         try {
             category.setId(rs.getInt(1));
             category.setName(rs.getString(2));
             category.setTitle(rs.getString(3));
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new MyException();
         }
         return category;
     }
 
-    public Category find(String category){
+    public Category find(String category) throws MyException {
         LOGGER.info("Finding category...");
         Category extractedCategory = null;
         Connection con = null;
@@ -90,8 +91,8 @@ public class CategoryDAO implements IDAO<Category>{
             if(rs.next()){
                 extractedCategory = extract(rs);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException  e) {
+            throw new MyException();
         }finally{
             manager.close(con);
             manager.close(preparedStatement);

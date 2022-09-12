@@ -2,6 +2,7 @@ package com.my.dao;
 
 import com.my.db.DBManager;
 import com.my.model.*;
+import com.my.services.exception.MyException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,7 +28,7 @@ class TransactionDAOTest {
         dbManager.clearTable("users");
     }
     @Test
-    void addFindDelete() {
+    void addFindDelete() throws MyException {
         Item item = new Item();
         item.setName("asdf");
         item.setQuantity(34);

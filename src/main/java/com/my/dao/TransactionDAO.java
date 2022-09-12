@@ -4,6 +4,7 @@ import com.my.db.DBManager;
 import com.my.model.Item;
 import com.my.model.Order;
 import com.my.model.Transaction;
+import com.my.services.exception.MyException;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
@@ -27,7 +28,7 @@ public class TransactionDAO implements IDAO<Transaction> {
         orderDAO = new OrderDAO(true);
         itemDao = new ItemDAO(true);
     }
-    public void add(@NotNull Transaction transaction) {
+    public void add(@NotNull Transaction transaction) throws MyException {
         int res = 0;
         Connection con = null;
         ResultSet rs  = null;
@@ -49,19 +50,17 @@ public class TransactionDAO implements IDAO<Transaction> {
             item.setQuantity(item.getQuantity() - transaction.getQuantity());
             itemDao.updateItemQuantity(transaction.getItem());
         } catch (SQLException e) {
-            e.printStackTrace();
             try {
                 con.rollback();
             } catch (SQLException ex) {
-                throw new RuntimeException(ex);
+                throw new MyException();
             }
-
         } finally {
             manager.close(con);
         }
     }
 
-    public  Transaction find(String id) {
+    public  Transaction find(String id) throws MyException {
         Transaction transaction = null;
 
         try (Connection con = manager.getConnection();
@@ -73,12 +72,12 @@ public class TransactionDAO implements IDAO<Transaction> {
             }
             return transaction;
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new MyException();
         }
 
     }
 
-    public  Transaction extract(@NotNull ResultSet rs) {
+    public  Transaction extract(@NotNull ResultSet rs) throws MyException {
         Transaction transaction = new Transaction();
         try {
            transaction.setQuantity(rs.getInt(3));
@@ -86,7 +85,7 @@ public class TransactionDAO implements IDAO<Transaction> {
            transaction.setId(rs.getInt(1));
            transaction.setOrder(findTransactionsOrder(transaction.getId()));
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new MyException();
         }
         return transaction;
     }
@@ -96,7 +95,7 @@ public class TransactionDAO implements IDAO<Transaction> {
      * @param transactionId
      * @return Order
      */
-    public Order findTransactionsOrder(int transactionId){
+    public Order findTransactionsOrder(int transactionId) throws MyException {
 
         Order order = null;
         try(Connection con = manager.getConnection();
@@ -107,7 +106,7 @@ public class TransactionDAO implements IDAO<Transaction> {
                 order = orderDAO.find(String.valueOf(rs.getInt(1)));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new MyException();
         }
         return order;
     }
@@ -118,7 +117,7 @@ public class TransactionDAO implements IDAO<Transaction> {
      * @param changedQuantity
      * @param addPcs
      */
-    public void changeQuantity(@NotNull Transaction transaction, int changedQuantity, boolean addPcs){
+    public void changeQuantity(@NotNull Transaction transaction, int changedQuantity, boolean addPcs) throws MyException {
         int unchangedQuantity = transaction.getQuantity();
 
             Connection con = null;
@@ -157,7 +156,7 @@ public class TransactionDAO implements IDAO<Transaction> {
                     try {
                         con.rollback();
                     } catch (SQLException ex) {
-                        throw new RuntimeException(ex);
+                        throw new MyException();
                     }
                 }finally {
                     manager.close(con);
@@ -169,7 +168,7 @@ public class TransactionDAO implements IDAO<Transaction> {
      * This method deletes a transaction
      * @param transaction
      */
-    public void deleteTransaction(@NotNull Transaction transaction){
+    public void deleteTransaction(@NotNull Transaction transaction) throws MyException {
             Connection con = null;
         try{
             con = manager.getConnection();
@@ -194,7 +193,7 @@ public class TransactionDAO implements IDAO<Transaction> {
             try {
                 con.rollback();
             } catch (SQLException ex) {
-                throw new RuntimeException(ex);
+                throw new MyException();
             }
         }finally {
             manager.close(con);

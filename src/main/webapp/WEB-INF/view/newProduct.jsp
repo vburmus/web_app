@@ -72,7 +72,7 @@
                 </script>
 
                 <div id="chooseCategoryDiv" hidden>
-                <select class="form-control" id="selectRole" name="selectCategory">
+                <select class="form-control" id="selectCategory" name="selectCategory">
                     <option></option>
                     <c:forEach var="category" items="${categories}">
                             <option>${category.name}</option>

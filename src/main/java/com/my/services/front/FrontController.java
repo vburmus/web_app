@@ -2,6 +2,7 @@ package com.my.services.front;
 
 import com.my.command.CommandFactory;
 import com.my.command.ICommand;
+import com.my.services.exception.MyException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -37,8 +38,13 @@ public class FrontController extends HttpServlet{
         LOGGER.info("#GET");
 
             boolean pageAccess = (boolean) req.getSession().getAttribute("pageAccess");
-            String forward = "/WEB-INF/view/" +handleRequest(req, resp) ;
             if (pageAccess) {
+                String forward = null;
+                try {
+                    forward = "/WEB-INF/view/" +handleRequest(req, resp);
+                } catch (MyException e) {
+                    throw new RuntimeException(e);
+                }
                 req.getRequestDispatcher(forward + ".jsp").forward(req, resp);
             }
 
@@ -58,7 +64,12 @@ public class FrontController extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LOGGER.info("#POST");
-        String redirect = handleRequest(req, resp);
+        String redirect = null;
+        try {
+            redirect = handleRequest(req, resp);
+        } catch (MyException e) {
+            throw new RuntimeException(e);
+        }
         resp.sendRedirect(redirect);
 
     }
@@ -69,7 +80,7 @@ public class FrontController extends HttpServlet{
      * @param resp
      * @return
      */
-    private String handleRequest(HttpServletRequest req, HttpServletResponse resp){
+    private String handleRequest(HttpServletRequest req, HttpServletResponse resp) throws MyException {
         ICommand iCommand = CommandFactory.getCommand(req,resp);
         return iCommand.execute(req,resp);
     }

@@ -2,7 +2,9 @@ package com.my.dao;
 
 import com.my.db.DBManager;
 import com.my.db.Fields;
+import com.my.model.Category;
 import com.my.model.Item;
+import com.my.services.exception.MyException;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
@@ -18,15 +20,19 @@ import static com.my.db.DBManager.LOGGER;
 
 public class ItemDAO implements IDAO<Item> {
 private static DBManager manager;
+private CategoryDAO categoryDAO ;
 
     public ItemDAO() {
         manager = DBManager.getInstance();
+        categoryDAO = new CategoryDAO();
+
     }
     public ItemDAO(boolean test) {
         manager = DBManager.getTestInstance();
+        categoryDAO = new CategoryDAO(true);
     }
 
-    public void add(@NotNull Item item) {
+    public void add(@NotNull Item item) throws MyException {
         LOGGER.info("Adding item..");
 
 
@@ -48,12 +54,12 @@ private static DBManager manager;
             ps2.setInt(k++, item.getId());
             ps2.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new MyException();
         }
 
     }
     @Override
-    public List getList() {
+    public List getList() throws MyException {
         List<Item> items = new ArrayList<>();
 
         try {
@@ -62,26 +68,46 @@ private static DBManager manager;
                 items.add(extract(rs));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new MyException();
         }
         return items;
     }
 
-    public  List getList(int offset){
+    public  List getList(int offset) throws MyException {
         List<Item> items = new ArrayList<>();
 
         try {
-            ResultSet rs = manager.getRSFromSql("SELECT * FROM items LIMIT 4 OFFSET " + offset);
+            ResultSet rs = null;
+                rs = manager.getRSFromSql("SELECT * FROM items LIMIT 4 OFFSET " + offset);
+
+
             while (rs.next()) {
                 items.add(extract(rs));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new MyException();
+        }
+        return items;
+    }
+    public  List getList(int offset,String categoryName) throws MyException {
+        List<Item> items = new ArrayList<>();
+        Category category = categoryDAO.find(categoryName);
+        try {
+            ResultSet rs = null;
+            rs = manager.getRSFromSql("SELECT * FROM category_has_items WHERE category_id = " + category.getId()+" LIMIT 4 OFFSET " + offset );
+///array of items id
+
+            while (rs.next()) {
+                Item item  = find(rs.getString(2));
+                items.add(item);
+            }
+        } catch (SQLException e) {
+            throw new MyException();
         }
         return items;
     }
 
-    public  Item extract(@NotNull ResultSet rs) {
+    public  Item extract(@NotNull ResultSet rs) throws MyException {
         Item item = new Item();
         try {
             item.setId(rs.getInt(Fields.ITEM_ID));
@@ -91,12 +117,12 @@ private static DBManager manager;
             item.setPrice(rs.getFloat(Fields.ITEM_PRICE));
             item.setPhoto(rs.getString(Fields.ITEM_PHOTO));
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new MyException();
         }
         return item;
     }
 
-    public  Item find(String item){
+    public  Item find(String item) throws MyException {
         LOGGER.info("Finding item...");
 
         try(Connection con = manager.getConnection()){
@@ -116,7 +142,7 @@ private static DBManager manager;
             }
             return extractedItem;
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new MyException();
         }
 
     }
@@ -124,7 +150,7 @@ private static DBManager manager;
      * Method getCountOfItems() is used to return count of items in table.
      *
      */
-    public int getCountOfItems(){
+    public int getCountOfItems() throws MyException {
 
         int count = 0;
         try(Connection con = manager.getConnection()){
@@ -133,7 +159,7 @@ private static DBManager manager;
                 count = rs.getInt(1);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new MyException();
         }
         return count;
     }
@@ -141,14 +167,14 @@ private static DBManager manager;
      * Method updateItemQuantity() is used to update the quantity of item.
      * @params item - item to update
      */
-    public void updateItemQuantity(@NotNull Item item){
+    public void updateItemQuantity(@NotNull Item item) throws MyException {
         try(Connection con = manager.getConnection();
         PreparedStatement ps = con.prepareStatement(SQL_UPDATE_ITEM_QUANTITY)){
             ps.setInt(1,item.getQuantity());
             ps.setInt(2,item.getId());
             ps.executeUpdate();
         }catch (SQLException e){
-            e.printStackTrace();
+            throw new MyException();
         }
 
     }

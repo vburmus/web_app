@@ -1,26 +1,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: burmus
-  Date: 8/26/2022
-  Time: 9:03 AM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="tf" tagdir="/WEB-INF/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/z-report.css"/>
-<jsp:useBean id="maxEmployee" type="com.my.model.Employee" scope="session"/>
-    <jsp:useBean id="biggestOrder" type="com.my.model.Order" scope="session"/>
+
 </head>
 <body>
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="language"/>
 <jsp:include page="header.jsp"/>
 <div class="container col-8 mx-auto ">
-
 
 <div class="report">
     <h1 class="text-center">${date} Report </h1>
@@ -50,6 +42,11 @@
 <hr>
 <hr>
 <hr>
+<c:choose>
+<c:when test="${biggestOrder==null}">
+    <tf:error message="${errorMessage}"/>
+</c:when>
+    <c:when test="${biggestOrder!=null}">
 <div class="maxOrder">
     <h3><fmt:message key="_maxOrder"/> ${maxEmployee.name} ${maxEmployee.surname}!</h3>
     <hr>
@@ -62,6 +59,8 @@
 <div class="summarise">
     <fmt:message key="income"/>  - ${summary}$
 </div>
+    </c:when>
+</c:choose>
 </div>
 </body>
 </html>

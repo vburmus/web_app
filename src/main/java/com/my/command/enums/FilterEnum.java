@@ -27,7 +27,8 @@ public enum FilterEnum {
     Z_REPORT(new SeniorOnlyFilterCommand()),
     DELETE_TRANSACTION(new SeniorOnlyFilterCommand()),
     ADD_CATEGORY(new CommodityExceptFilterCommand()),
-    EMPLOYEES_PAGE(new AdminOnlyFilterCommand());
+    EMPLOYEES_PAGE(new AdminOnlyFilterCommand()),
+    LANG_SETUP(new LangFilterCommand());
 
     private IFilterCommand command;
 

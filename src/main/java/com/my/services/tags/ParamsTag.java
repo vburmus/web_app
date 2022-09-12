@@ -5,6 +5,7 @@ import com.my.dao.EmployeeDAO;
 import com.my.dao.OrderDAO;
 import com.my.model.Employee;
 import com.my.model.Order;
+import com.my.services.exception.MyException;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
@@ -19,8 +20,18 @@ public class ParamsTag extends TagSupport {
     private EmployeeDAO employeeDao = new EmployeeDAO();
     @Override
     public int doStartTag() throws JspException {
-      Order order = orderDAO.find(orderId);
-        Employee user = employeeDao.find(userId);
+        Order order = null;
+        try {
+            order = orderDAO.find(orderId);
+        } catch (MyException e) {
+            throw new RuntimeException(e);
+        }
+        Employee user = null;
+        try {
+            user = employeeDao.find(userId);
+        } catch (MyException e) {
+            throw new RuntimeException(e);
+        }
         JspWriter out = pageContext.getOut();
         try {
             String button;

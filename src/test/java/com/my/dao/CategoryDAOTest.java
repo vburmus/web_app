@@ -2,6 +2,7 @@ package com.my.dao;
 
 import com.my.db.DBManager;
 import com.my.model.Category;
+import com.my.services.exception.MyException;
 import com.mysql.cj.jdbc.MysqlDataSource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -42,7 +43,7 @@ class CategoryDAOTest {
         dbManager.clearTable("users");
     }
     @Test
-    void addAndFindProduct() throws SQLException, NamingException {
+    void addAndFindProduct() throws SQLException, NamingException, MyException {
             Category category = new Category();
             category.setName("name");
             category.setTitle("asdf");
@@ -53,7 +54,7 @@ class CategoryDAOTest {
     }
 
     @Test
-    void getList() {
+    void getList() throws MyException {
         ArrayList<Category> categories = new ArrayList<>();
 
         for(int i = 0;i < 10;i++) {

@@ -22,6 +22,7 @@ public class AdminOnlyFilterCommand implements IFilterCommand {
     @Override
     public boolean getAccess(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         HttpSession httpSession = req.getSession();
+
         Employee employee = (Employee) httpSession.getAttribute("user");
 
         if(employee==null ) {

@@ -6,6 +6,7 @@ import com.my.model.Employee;
 import com.my.model.Item;
 import com.my.model.Order;
 import com.my.model.Transaction;
+import com.my.services.exception.MyException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,12 +17,14 @@ import static com.my.db.DBManager.LOGGER;
 public class AddProductCommand implements ICommand {
    ItemDAO itemDao = new ItemDAO();
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res) {
+    public String execute(HttpServletRequest req, HttpServletResponse res) throws MyException {
         LOGGER.info("User is trying to add product.");
         HttpSession session = req.getSession();
         String itemVar = req.getParameter("item");
         Item item = itemDao.find(itemVar);
         String errorMessage = "errorMessage";
+        String errorMessagePage = "transaction";
+        session.setAttribute("errorPage",errorMessagePage);
         if(item==null){
             req.getSession().setAttribute(errorMessage, "You entered a wrong name!");
             LOGGER.error("User entered a wrong name!");

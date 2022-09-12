@@ -4,6 +4,7 @@ import com.my.command.ICommand;
 import com.my.dao.EmployeeDAO;
 import com.my.model.Employee;
 import com.my.model.password.KeyDerivator;
+import com.my.services.exception.MyException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,7 +24,7 @@ public class RegisterCommand implements ICommand {
     }
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws MyException {
         LOGGER.info("User is trying to register.");
         String name = request.getParameter("name");
         System.out.println(name);
@@ -33,6 +34,8 @@ public class RegisterCommand implements ICommand {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String text = request.getParameter("text");
+        request.getSession().setAttribute("errorPage", "register");
+
         if (name.equals("") || surname.equals("") || email.equals("") || mobile.equals("") || password.equals("")) {
 
             request.getSession().setAttribute("errorMessage", "You entered wrong parameters!");
@@ -61,7 +64,7 @@ public class RegisterCommand implements ICommand {
 
                         }
                     } catch (IOException e) {
-                        throw new RuntimeException(e);
+                        throw new MyException();
                     }
                 }
                 if (imgName == null) {
@@ -75,7 +78,7 @@ public class RegisterCommand implements ICommand {
             try {
                 employee.setPassword(KeyDerivator.generateStorngPasswordHash(password));
             } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-                throw new RuntimeException(e);
+                throw new MyException();
             }
 
             employee.setProfile(text);

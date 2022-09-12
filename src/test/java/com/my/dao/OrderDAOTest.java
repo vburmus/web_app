@@ -3,6 +3,7 @@ package com.my.dao;
 import com.my.db.DBManager;
 import com.my.model.Employee;
 import com.my.model.Order;
+import com.my.services.exception.MyException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,7 @@ class OrderDAOTest {
         dbManager.clearTable("users");
     }
     @Test
-    void addFindDelete() {
+    void addFindDelete() throws MyException {
         Employee employee = new Employee();
         employee.setName("asdf");
         employee.setSurname("QWERTY");

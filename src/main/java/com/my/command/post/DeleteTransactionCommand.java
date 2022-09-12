@@ -7,9 +7,11 @@ import com.my.dao.TransactionDAO;
 import com.my.model.Item;
 import com.my.model.Order;
 import com.my.model.Transaction;
+import com.my.services.exception.MyException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -20,8 +22,12 @@ public class DeleteTransactionCommand implements ICommand {
     private ItemDAO itemDao = new ItemDAO();
     OrderDAO orderDao = new OrderDAO();
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res) {
+    public String execute(HttpServletRequest req, HttpServletResponse res) throws MyException {
         LOGGER.info("User is trying to delete transaction.");
+        HttpSession session = req.getSession();
+        String errorMessagePage = "order";
+        session.setAttribute("errorPage",errorMessagePage);
+
         Transaction transaction = transactionDAO.find(req.getParameter("transactionId"));
         if(transaction!=null) {
             Item item = transaction.getItem();
@@ -43,7 +49,7 @@ public class DeleteTransactionCommand implements ICommand {
             try {
                 res.sendError(HttpServletResponse.SC_NOT_FOUND);
             } catch (IOException e) {
-                throw new RuntimeException("Error send");
+                throw new MyException();
             }
             return null;
         }

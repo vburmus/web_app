@@ -3,6 +3,7 @@ package com.my.dao;
 import com.my.db.DBManager;
 import com.my.model.Category;
 import com.my.model.Employee;
+import com.my.services.exception.MyException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,7 +31,7 @@ class EmployeeDAOTest {
         dbManager.clearTable("users");
     }
     @Test
-    void addEmployee(){
+    void addEmployee() throws MyException {
         Employee employee = new Employee();
         employee.setName("asdf");
         employee.setSurname("QWERTY");
@@ -42,13 +43,13 @@ class EmployeeDAOTest {
         Assertions.assertEquals(foundEmployee.getName(), employee.getName());
     }
     @Test
-    void getEmployeeList(){
+    void getEmployeeList() throws MyException {
         List<String> roles = employeeDAO.getList();
         Assertions.assertEquals(roles.size(),5);
 
     }
     @Test
-    void compareCountOf(){
+    void compareCountOf() throws MyException {
         for(int i = 0; i < 10; i++) {
             Employee employee = new Employee();
             employee.setName("asdf");

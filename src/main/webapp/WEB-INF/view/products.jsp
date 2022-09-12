@@ -24,9 +24,27 @@
   </div>
 </c:if>
 <div class="prod">
+    <div id="chooseCategoryDiv" >
+      <script type="text/javascript">
+        function submitForm()
+        {
+          let select  = document.getElementById('selectCategory');
+          select.submit();
+        }
+      </script>
+      <form action="controller" method="get" id="selectCategory">
+        <input type="hidden" name="command" value="PRODUCTS_PAGE">
+        <input type="hidden" name="page" value="1">
+      <select class="form-control"  name="selectCategory" onchange="submitForm()">
+        <option></option>
+        <option>None</option>
+        <c:forEach var="category" items="${categories}">
+          <option>${category.name}</option>
+        </c:forEach>
+      </select>
+      </form>
+  </div>
   <div class="row">
-
-
     <c:forEach var="item" items="${items}">
 <div class="card-group col-3">
 

@@ -5,6 +5,7 @@ import com.my.dao.CategoryDAO;
 import com.my.model.Category;
 import com.my.model.Item;
 import com.my.dao.ItemDAO;
+import com.my.services.exception.MyException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +26,7 @@ public class NewProductCommand implements ICommand {
 
     @Override
 
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws MyException {
         LOGGER.info("USer is trying to make a product.");
         String name = request.getParameter("productName");
         String quantity = request.getParameter("quantity");
@@ -33,12 +34,16 @@ public class NewProductCommand implements ICommand {
         String price = request.getParameter("price");
         String selectCategory = "selectCategory";
         String categoryName = request.getParameter(selectCategory);
+        request.getSession().setAttribute("errorPage", "newProduct");
 
         if(name.equals("")||quantity.equals("")||price.equals("")){
             request.getSession().setAttribute("errorMessage", "Items parameters are wrong!");
 
         }else if(itemDao.find(name)!=null){
-            request.getSession().setAttribute("errorMessage", "This item already exists!");
+            Item item = itemDao.find(name);
+            item.setQuantity(item.getQuantity() + Integer.valueOf(quantity));
+            itemDao.updateItemQuantity(item);
+            request.getSession().setAttribute("errorMessage", "This item already exists!The quantity was changed.");
 
         }else {
             Item item = new Item();
@@ -68,7 +73,7 @@ public class NewProductCommand implements ICommand {
      * @param request
      * @param item
      */
-    private void imgLoad(HttpServletRequest request, Item item) {
+    private void imgLoad(HttpServletRequest request, Item item) throws MyException {
         try {
             Collection<Part> parts = request.getParts();
 
@@ -84,7 +89,7 @@ public class NewProductCommand implements ICommand {
 
                     }
                 } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    throw new MyException();
                 }
             }
             if (fileName == null) {
@@ -93,7 +98,7 @@ public class NewProductCommand implements ICommand {
             item.setPhoto(fileName);
 
         } catch (IOException | ServletException e) {
-            throw new RuntimeException(e);
+            throw new MyException();
         }
     }
 }

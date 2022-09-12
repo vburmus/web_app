@@ -4,6 +4,7 @@ import com.my.command.ICommand;
 import com.my.dao.EmployeeDAO;
 import com.my.db.DBManager;
 import com.my.model.Employee;
+import com.my.services.exception.MyException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +16,13 @@ public class EmployeesPageCommand implements ICommand {
     EmployeeDAO employeeDao = new EmployeeDAO();
 
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res) {
+    public String execute(HttpServletRequest req, HttpServletResponse res) throws MyException {
+        if(req.getSession().getAttribute("errorPage")!=null) {
+            if (!req.getSession().getAttribute("errorPage").equals("employees")) {
+                req.getSession().removeAttribute("errorMessage");
+                req.getSession().removeAttribute("errorPage");
+            }
+        }
         int page = Integer.parseInt(req.getParameter("page"));
         LOGGER.info("Employees page #" + page + "!");
         req.setAttribute("page",page);
