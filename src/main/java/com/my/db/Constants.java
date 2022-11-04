@@ -20,8 +20,8 @@ public class Constants {
     public static final String SQL_UPDATE_EMPLOYEE_ORDERS =
 "UPDATE users SET  orders = ?  WHERE id = ?;";
     public static final String SQL_INSERT_ITEM =
-            "INSERT INTO items  ( id, name, quantity, title, price,photo) " +
-                    "VALUES  ( default, ?, ?, ?, ?, ?);";
+            "INSERT INTO items  ( id, name, quantity, title, price,photo,unit) " +
+                    "VALUES  ( default, ?, ?, ?, ?, ?,?);";
     public static final String SQL_SELECT_ITEMS =
             "SELECT * FROM items ORDER BY ID";
     public static final String SQL_INSERT_TRANSACTION =

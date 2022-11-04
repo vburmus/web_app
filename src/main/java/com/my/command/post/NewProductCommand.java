@@ -33,6 +33,7 @@ public class NewProductCommand implements ICommand {
         String productDescription = request.getParameter("productDescription");
         String price = request.getParameter("price");
         String selectCategory = "selectCategory";
+        String unit = request.getParameter("unit");
         String categoryName = request.getParameter(selectCategory);
         request.getSession().setAttribute("errorPage", "newProduct");
 
@@ -56,7 +57,7 @@ public class NewProductCommand implements ICommand {
                 item.setQuantity(Integer.valueOf(quantity));
                 item.setTitle(productDescription);
                 item.setPrice(Float.parseFloat(price));
-
+                item.setUnit(unit);
                 imgLoad(request, item);
                 this.itemDao.add(item);
                 LOGGER.info("Success.");

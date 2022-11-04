@@ -34,6 +34,15 @@
                 <textarea type="text" id="productDescription" name="productDescription" class="form-control" rows="3" ></textarea>
             </div>
             <div class="form-outline mb-4">
+                <label class="form-label" for="unit">Unit</label>
+                <select id="unit" name="unit" class="form-control">
+                    <option>pcs</option>
+                    <option>kg</option>
+                    <option>g</option>
+                </select>
+            </div>
+
+            <div class="form-outline mb-4">
                 <label class="form-label" for="price"><fmt:message key="_price"/></label>
                 <input type="price" id="price" name="price" class="form-control" />
             </div>

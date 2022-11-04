@@ -44,6 +44,19 @@
       </select>
       </form>
   </div>
+  <div class="chooseUnit">
+    <form action="controller" method="get" id="selectUnit">
+      <input type="hidden" name="command" value="PRODUCTS_PAGE">
+      <input type="hidden" name="page" value="1">
+      <select class="form-control" name="selectUnit" >
+        <option>None</option>
+        <option>kg</option>
+        <option>g</option>
+        <option>pcs</option>
+      </select>
+      <button type="submit">asdf</button>
+    </form>
+  </div>
   <div class="row">
     <c:forEach var="item" items="${items}">
 <div class="card-group col-3">
@@ -60,7 +73,7 @@
       </div>
 
         <h6 class="card-text"><fmt:message key="_price"/>: ${item.getPrice()}$</h6>
-        <small class="text-muted"><fmt:message key="_quantity"/>: ${item.getQuantity()}</small>
+        <small class="text-muted"><fmt:message key="_quantity"/>: ${item.getQuantity()} ${item.getUnit()}</small>
       </div>
     </div>
 

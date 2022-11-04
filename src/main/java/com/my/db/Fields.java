@@ -17,6 +17,7 @@ public class Fields {
    public static final  String ITEM_ID = "id";
    public static final  String ITEM_NAME = "name";
    public static final  String ITEM_QUANTITY = "quantity";
+   public static final  String ITEM_UNIT = "unit";
    public static final  String ITEM_PRICE = "price";
    public static final  String ITEM_TITLE = "title";
    public static final  String ITEM_PHOTO = "photo";

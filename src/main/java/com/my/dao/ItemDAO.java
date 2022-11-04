@@ -45,6 +45,7 @@ private CategoryDAO categoryDAO ;
             preparedStatement.setString(k++, item.getTitle());
             preparedStatement.setFloat(k++, item.getPrice());
             preparedStatement.setString(k++, item.getPhoto());
+            preparedStatement.setString(k++, item.getUnit());
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             if(rs.next())
@@ -89,23 +90,34 @@ private CategoryDAO categoryDAO ;
         }
         return items;
     }
-    public  List getList(int offset,String categoryName) throws MyException {
+    public  List getList(int offset,String filterName, boolean isUnitFilter, boolean isCategoryFilter) throws MyException {
         List<Item> items = new ArrayList<>();
-        Category category = categoryDAO.find(categoryName);
+
+
         try {
             ResultSet rs = null;
-            rs = manager.getRSFromSql("SELECT * FROM category_has_items WHERE category_id = " + category.getId()+" LIMIT 4 OFFSET " + offset );
-///array of items id
+            if(isCategoryFilter==true && isUnitFilter==false) {
+                Category category = categoryDAO.find(filterName);
+                rs = manager.getRSFromSql("SELECT * FROM category_has_items WHERE category_id = " + category.getId() + " LIMIT 4 OFFSET " + offset);
 
-            while (rs.next()) {
-                Item item  = find(rs.getString(2));
-                items.add(item);
+                while (rs.next()) {
+                    Item item = find(rs.getString(2));
+                    items.add(item);
+                }
+            } else if (isUnitFilter==true && isCategoryFilter==false) {
+                rs = manager.getRSFromSql("SELECT * FROM items WHERE unit = '" + filterName + "' LIMIT 4 OFFSET " + offset);
+                while(rs.next()){
+                    Item item = find(rs.getString(1));
+                    items.add(item);
+                }
+
             }
         } catch (SQLException e) {
             throw new MyException();
         }
         return items;
     }
+
 
     public  Item extract(@NotNull ResultSet rs) throws MyException {
         Item item = new Item();
@@ -116,6 +128,7 @@ private CategoryDAO categoryDAO ;
             item.setTitle(rs.getString(Fields.ITEM_TITLE));
             item.setPrice(rs.getFloat(Fields.ITEM_PRICE));
             item.setPhoto(rs.getString(Fields.ITEM_PHOTO));
+            item.setUnit(rs.getString(Fields.ITEM_UNIT));
         } catch (SQLException e) {
             throw new MyException();
         }

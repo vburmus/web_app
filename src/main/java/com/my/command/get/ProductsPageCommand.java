@@ -32,13 +32,16 @@ public class ProductsPageCommand implements ICommand {
         pages/=offset;
 
         List<Item> items;
-        if(req.getParameter("selectCategory")==null || req.getParameter("selectCategory").equals("None")) {
-             items = itemDao.getList(offset * (page - 1));
-
-        }else{
+        String selectedCategory  = req.getParameter("selectCategory");
+        String selectedUnit  = req.getParameter("selectUnit");
+         if(selectedCategory !=null && selectedUnit==null){
                 page = 1;
-                items = itemDao.getList(offset * (page - 1),req.getParameter("selectCategory"));
-
+                items = itemDao.getList(offset * (page - 1),selectedCategory,false,true);
+        }else if(selectedCategory==null && selectedUnit!=null){
+                page = 1;
+                items = itemDao.getList(offset*(page-1),selectedUnit,true, false);
+        }else{
+             items = itemDao.getList(offset * (page - 1));
         }
         req.setAttribute("page",page);
         req.setAttribute("pages",pages );

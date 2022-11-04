@@ -8,6 +8,7 @@ public class Item {
     private float price;
     private String photo;
     private Category category;
+    private String unit;
 
 public  Item(){
 
@@ -15,7 +16,9 @@ public  Item(){
     public Category getCategory() {
         return category;
     }
-
+    public String getUnit() {
+        return unit;
+    }
     public Integer getId() {
         return id;
     }
@@ -35,6 +38,9 @@ public  Item(){
         return title;
     }
 
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
     public void setName(String name) {
         this.name = name;
 
